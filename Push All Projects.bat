@@ -4,6 +4,8 @@ setlocal DisableDelayedExpansion EnableExtensions
 set scriptpath=%~dp0
 set scriptpath=%scriptpath:~0,-1%
 pushd "%scriptpath%"
+rem Go to parent dir if we are in subdir 'helpers'
+for %%F in ("%cd%") do if "%%~nxF"=="helpers" cd ..
 
 :: Check for Git being installed, first check expected location
 :: test some candidate directories, faster than searching ...
