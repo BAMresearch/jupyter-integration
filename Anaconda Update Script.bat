@@ -194,8 +194,17 @@ rem given absPath must be without any trailing backslash
 :installNodeJS
 (
 	%condapath% activate
-	call conda install -c conda-forge -y nodejs
-    call npm install -g npm yarn
+    where npm >nul 2>nul
+    if NOT ERRORLEVEL 0 (
+        echo NPM/nodejs not found, installing it first
+        call conda install -c conda-forge -y nodejs
+    ) else (
+        rem Updating nodejs
+        call npm install -g npm
+        call npm install -g npm
+    )
+    call npm install -g yarn
+    call npm install -g yarn
 )
 :installJLabWidgets
 (
