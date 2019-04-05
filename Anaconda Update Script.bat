@@ -206,11 +206,16 @@ rem given absPath must be without any trailing backslash
     call npm install -g yarn
     call npm install -g yarn
 )
+:fixInconsistentConda
+(
+    rem for /f "delims=:= tokens=2,3*" %i in ('%condapath% install fgdfgsdfgdf 2^>^&1 ^| findstr "=="') do ( echo %i;%j;%k )
+)
 :installJLabWidgets
 (
 	%condapath% activate
 	call conda install -y ipywidgets
 	call jupyter labextension install @jupyter-widgets/jupyterlab-manager
+rem    call jupyter labextension install ipyvolume
 )
 :installJLabGit
 (
