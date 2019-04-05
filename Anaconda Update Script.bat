@@ -194,8 +194,9 @@ rem given absPath must be without any trailing backslash
 :installNodeJS
 (
 	%condapath% activate
+    setlocal EnableDelayedExpansion
     where npm >nul 2>nul
-    if NOT ERRORLEVEL 0 (
+    if !ERRORLEVEL! NEQ 0 (
         echo NPM/nodejs not found, installing it first
         call conda install -c conda-forge -y nodejs
     ) else (
@@ -205,6 +206,7 @@ rem given absPath must be without any trailing backslash
     )
     call npm install -g yarn
     call npm install -g yarn
+    setlocal DisableDelayedExpansion
 )
 :fixInconsistentConda
 (
