@@ -215,7 +215,7 @@ rem given absPath must be without any trailing backslash
 	%condapath% activate
 	call conda install -y ipywidgets
 	call jupyter labextension install @jupyter-widgets/jupyterlab-manager
-rem    call jupyter labextension install ipyvolume
+	call jupyter labextension install jupyter-matplotlib
 )
 :installJLabGit
 (
