@@ -77,6 +77,7 @@ for /d %%I in ("%USERPROFILE%" ^
         set anapath=%%~I\Anaconda3
     )
 set condapath=%anapath%\Library\bin\conda.bat
+rem in current versions of Anaconda: %anapath%\condabin\conda.bat
 if not exist "%condapath%" (
     echo MISSING Anaconda:   '%condapath%'
     echo [de]
@@ -93,6 +94,12 @@ if not exist "%condapath%" (
 echo Anaconda was FOUND: '%condapath%'
 set pycmd=%anapath%\python.exe
 echo Using Python at:    '%pycmd%'
+set pipcmd=%anapath%\Scripts\pip.exe
+set juplabext=%anapath%\Scripts\jupyter-labextension.exe
+set jupsrvext=%anapath%\Scripts\jupyter-serverextension.exe
+set jupnbext=%anapath%\Scripts\jupyter-nbextension.exe
+set jupcontrib=%anapath%\Scripts\jupyter-contrib.exe
+set jupkernspec=%anapath%\Scripts\jupyter-kernelspec.exe
 call :addToPATH "%anapath%"
 
 echo.
@@ -135,9 +142,8 @@ if %ERRORLEVEL% NEQ 0 (
     goto :end
 )
 
-rem Connected to the Internet
-rem remove nodejs first, v10.13 from main can not be installed/upgraded
-call %condapath% remove nodejs -y
+rem Connected to the Internet now
+call :removeNode1013
 echo Upgrading conda and pip ...
 call :upgradeConda
 call :upgradePip2
@@ -172,7 +178,7 @@ goto :end
 :getParentPath <resultVar> <pathVar>
 (
     set "%~1=%~dp2"
-    exit /b
+    goto :eof
 )
 :addToPATH <absPath>
 rem given absPath must be without any trailing backslash
@@ -189,16 +195,29 @@ rem given absPath must be without any trailing backslash
 	setlocal DisableDelayedExpansion
 	echo Adjusted PATH:
 	reg query HKCU\Environment /f Path
-	exit /b
+    goto :eof
+)
+:removeNode1013
+(
+    echo removeNode1013
+    setlocal EnableDelayedExpansion
+    for /F "tokens=2" %%I in ('conda list nodejs -q ^| findstr /b /v #') do (set "nodever=%%I")
+    for /F "delims=. tokens=1,2,3" %%I in ("!nodever!") do (
+        if %%I EQU 10 if %%J EQU 13 (
+            echo Removing nodejs v10.13 first, it is buggy and can not be installed/upgraded
+            call %condapath% remove nodejs -y
+        )
+    )
+    setlocal DisableDelayedExpansion
+    goto :eof
 )
 :installNodeJS
 (
-	%condapath% activate
     setlocal EnableDelayedExpansion
     where npm >nul 2>nul
     if !ERRORLEVEL! NEQ 0 (
         echo NPM/nodejs not found, installing it first
-        call conda install -c conda-forge -y nodejs
+        call %condapath% install -c conda-forge -y nodejs
     ) else (
         rem Updating nodejs
         call npm install -g npm
@@ -207,73 +226,77 @@ rem given absPath must be without any trailing backslash
     call npm install -g yarn
     call npm install -g yarn
     setlocal DisableDelayedExpansion
+    goto :eof
 )
 :fixInconsistentConda
 (
     rem for /f "delims=:= tokens=2,3*" %i in ('%condapath% install fgdfgsdfgdf 2^>^&1 ^| findstr "=="') do ( echo %i;%j;%k )
+    goto :eof
 )
 :installJLabWidgets
 (
-	%condapath% activate
-	call conda install -y ipywidgets
-	call jupyter labextension install @jupyter-widgets/jupyterlab-manager
-	call jupyter labextension install jupyter-matplotlib
+	call %condapath% install -y ipywidgets
+	call %juplabext% install @jupyter-widgets/jupyterlab-manager
+	call %juplabext% install jupyter-matplotlib
+    goto :eof
 )
 :installJLabGit
 (
-	%condapath% activate
-	call pip install --upgrade jupyterlab-git
-	call jupyter labextension install @jupyterlab/git
-	call jupyter serverextension enable --py jupyterlab_git
+	call %pycmd% -m pip install --upgrade jupyterlab-git
+	call %juplabext% install @jupyterlab/git
+	call %jupsrvext% enable --py jupyterlab_git
+    goto :eof
 )
 :upgradeConda
 (
 	call %condapath% update -y -n root conda
 	call %condapath% update -y --all
+    goto :eof
 )
 :upgradePip2
 (
-    %pycmd% -m pip install --upgrade pip
+    call %pycmd% -m pip install --upgrade pip
+    goto :eof
 )
 :installModuleWithPip <modName>
 (
-	%condapath% activate
 	for %%I in (%*) do (
 		echo.
 		echo Checking module '%%I':
-		pip install --upgrade %%I
+		call %pycmd% -m pip install --upgrade %%I
 	)
+    goto :eof
 )
 :uninstallModuleWithPip <modName>
 (
-	%condapath% activate
 	for %%I in (%*) do (
 		echo.
 		echo Uninstalling module '%%I':
-		pip uninstall --yes %%I
+		call %pycmd% -m pip uninstall --yes %%I
 	)
+    goto :eof
 )
 :installJupyterExtensions
 (
-    %condapath% activate
-    jupyter contrib nbextensions install --user
+    call %jupcontrib% nbextensions install --user
     for %%I in (%*) do (
         echo.
-        jupyter nbextension enable %%I
+        call %jupnbext% enable %%I
     )
     :: github.com/takluyver/cite2c
-    python -m cite2c.install
+    call %pycmd% -m cite2c.install
     :: fix for console window remaining open and restarting on win10
     :: github.com/takluyver/nbopen/issues/54#issuecomment-379711047
 	setlocal EnableDelayedExpansion
-	for /F "skip=1 tokens=2" %%I in ('jupyter kernelspec list') do (
+	for /F "skip=1 tokens=2" %%I in ('%jupkernspec% list') do (
 		if exist "%%I" set kernpath=%%I\kernel.json
 	)
 	echo Updating '!kernpath!'.
 	rem Reverting former nbopen patch of python exec in kernel.json
-	python -c  "fd=open(r'!kernpath!','r'); buf=fd.read().replace('pythonw.exe','python.exe'); fd.close(); fd=open(r'!kernpath!','w'); fd.write(buf); fd.close()"
+	call %pycmd% -c "fd=open(r'!kernpath!','r'); buf=fd.read().replace('pythonw.exe','python.exe'); fd.close(); fd=open(r'!kernpath!','w'); fd.write(buf); fd.close()"
 
 	setlocal DisableDelayedExpansion
+    goto :eof
 )
 
 :end
