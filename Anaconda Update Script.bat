@@ -73,8 +73,8 @@ echo.
 :: test some candidate directories, faster than searching ...
 for /d %%I in ("%USERPROFILE%" ^
                "%LOCALAPPDATA%\Continuum" ^
-    ) do if exist %%~I\Anaconda3 (
-        set anapath=%%~I\Anaconda3
+    ) do if exist %%~I\anaconda3 (
+        set anapath=%%~I\anaconda3
     )
 set condapath=%anapath%\Library\bin\conda.bat
 rem in current versions of Anaconda: %anapath%\condabin\conda.bat
