@@ -223,8 +223,6 @@ rem given absPath must be without any trailing backslash
         call npm install -g npm
         call npm install -g npm
     )
-    call npm install -g yarn
-    call npm install -g yarn
     setlocal DisableDelayedExpansion
     goto :eof
 )
