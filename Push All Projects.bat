@@ -1,3 +1,12 @@
+@rem Push All Projects.bat
+@rem
+@rem Copyright (c) 2019 Bundesanstalt für Materialforschung und -prüfung (BAM).
+@rem Subject to the MIT license.
+@rem
+@rem This file is part of 'Jupyter Git Scripts' ( <url> ).
+@rem Recursively sends recent commits of the current GIT repository and all
+@rem submodules.
+
 @echo off
 setlocal DisableDelayedExpansion EnableExtensions
 

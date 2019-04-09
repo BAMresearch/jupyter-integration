@@ -1,3 +1,11 @@
+@rem Pull All Projects.bat
+@rem
+@rem Copyright (c) 2019 Bundesanstalt für Materialforschung und -prüfung (BAM).
+@rem Subject to the MIT license.
+@rem
+@rem This file is part of 'Jupyter Git Scripts' ( <url> ).
+@rem Recursively updates the current GIT repository and all submodules within.
+
 @echo off
 setlocal DisableDelayedExpansion EnableExtensions
 

@@ -1,3 +1,11 @@
+@rem Anaconda Update Script.bat
+@rem
+@rem Copyright (c) 2019 Bundesanstalt für Materialforschung und -prüfung (BAM).
+@rem Subject to the MIT license.
+@rem
+@rem This file is part of 'Jupyter Git Scripts' ( <url> ).
+@rem Updates the Anaconda Python distribution and sets up Jupyter with GIT.
+
 @echo off
 :: stackoverflow.com/questions/20484151/redirecting-output-from-within-batch-file
 set logfile=%~dp0%~n0 (%COMPUTERNAME%).log

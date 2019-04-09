@@ -1,16 +1,22 @@
+@rem New Jupyter Project.bat
+@rem
+@rem Copyright (c) 2019 Bundesanstalt für Materialforschung und -prüfung (BAM).
+@rem Subject to the MIT license.
+@rem
+@rem This file is part of 'Jupyter Git Scripts' ( <url> ).
+@rem Easy setup of a GIT-enabled Jupyter notebook.
+@rem
+@rem Creates a blank Jupyter project in a folder the user is asked for.
+@rem Sets up GIT with Jupyter notebook filtering (nbstripout) in that folder.
+@rem Adds a copy of the notebook template 'New Project Notebook.ipynb' from config folder.
+@rem Adds preconfigured GIT submodules as well.
+@rem Expects a config file 'config\local.conf' relative to this scripts location
+@rem with the following content (without leading 'rem '):
+
+@rem NewProjectOrigin=https://<your GIT server>/%USERNAME%
+@rem NewProjectSubMods=https://<your GIT server>/<some subdir>/commontools.git
+
 @echo off
-rem Easy setup of a GIT-enabled Jupyter notebook.
-rem
-rem Creates a blank Jupyter project in a folder the user is asked for.
-rem Sets up GIT with Jupyter notebook filtering (nbstripout) in that folder.
-rem Adds a copy of the notebook template 'New Project Notebook.ipynb' from config folder.
-rem Adds preconfigured GIT submodules as well.
-rem Expects a config file 'config\local.conf' relative to this scripts location
-rem with the following content (without leading 'rem '):
-
-rem NewProjectOrigin=https://<your GIT server>/%USERNAME%
-rem NewProjectSubMods=https://<your GIT server>/<some subdir>/commontools.git
-
 setlocal DisableDelayedExpansion EnableExtensions
 
 set scriptpath=%~dp0

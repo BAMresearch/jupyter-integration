@@ -42,7 +42,7 @@ NewProjectSubMods=https://<your GIT server>/<some subdir>/commontools.git
 
 ### `Pull All Projects.bat`
 
-Recursively updates the current GIT repository and all submodule within from
+Recursively updates the current GIT repository and all submodules within from
 remote (server possibly) and checks out the latest master.
 
 ### `Push All Projects.bat`
