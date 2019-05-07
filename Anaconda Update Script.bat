@@ -156,7 +156,9 @@ echo Upgrading conda and pip ...
 call :upgradeConda
 call :upgradePip2
 echo Installing/Updating additional packages ...
-call :installModuleWithPip nbstripout gitpython msgpack lmfit cite2c winshell jupyter_contrib_nbextensions
+call %condapath% install -y h5py gitpython
+call %condapath% install -c conda-forge -y nbstripout lmfit jupyter_contrib_nbextensions
+call :installModuleWithPip msgpack cite2c winshell
 
 rem Set Jupyter extensions regardless of connectivity
 call :installJupyterExtensions codefolding/main equation-numbering/main freeze/main toggle_all_line_numbers/main execute_time/ExecuteTime hide_input/main collapsible_headings/main toc2/main
