@@ -55,25 +55,25 @@ if not exist "%gitcmd%" (
     echo [en]
     echo   Git was not found, please install 'Git and TortoiseGit' from the
     echo   Software Portal first and run this script again.
-    goto :end
+) else (
+    echo Git was FOUND:      '%gitcmd%'
+
+    echo.
+    echo [de] Konfiguriere globale GIT-Einstellungen ...
+    echo [en] Configure global GIT settings ...
+    @echo ON
+
+    :: do not auto convert line endings, bad for data files
+    "%gitcmd%" config --global core.autocrlf false
+    "%gitcmd%" config core.whitespace cr-at-eol
+
+    :: configure TortoiseGit context menu entries
+    reg add HKCU\Software\TortoiseGit /f /v ContextMenuEntries /t REG_DWORD /d 0x3641e
+    reg add HKCU\Software\TortoiseGit /f /v ContextMenuEntrieshigh /t REG_DWORD /d 0x220
+    :: add GIT to users PATH if not already there
+    call :getParentPath gitpath "%gitcmd%"
+    call :addToPATH "%gitpath:~0,-1%"
 )
-echo Git was FOUND:      '%gitcmd%'
-
-echo.
-echo [de] Konfiguriere globale GIT-Einstellungen ...
-echo [en] Configure global GIT settings ...
-@echo ON
-
-:: do not auto convert line endings, bad for data files
-"%gitcmd%" config --global core.autocrlf false
-"%gitcmd%" config core.whitespace cr-at-eol
-
-:: configure TortoiseGit context menu entries
-reg add HKCU\Software\TortoiseGit /f /v ContextMenuEntries /t REG_DWORD /d 0x3641e
-reg add HKCU\Software\TortoiseGit /f /v ContextMenuEntrieshigh /t REG_DWORD /d 0x220
-:: add GIT to users PATH if not already there
-call :getParentPath gitpath "%gitcmd%"
-call :addToPATH "%gitpath:~0,-1%"
 
 echo.
 
