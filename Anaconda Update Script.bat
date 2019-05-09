@@ -156,15 +156,17 @@ echo Upgrading conda and pip ...
 call :upgradeConda
 call :upgradePip2
 echo Installing/Updating additional packages ...
-call %condapath% install -y h5py gitpython
-call %condapath% install -c conda-forge -y nbstripout lmfit jupyter_contrib_nbextensions
+call %condapath% install -y --no-channel-priority h5py gitpython ipywidgets
+rem regular anaconda packages get updated by previous update --all
+call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions
+call %condapath% update -y --no-channel-priority -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions
 call :installModuleWithPip msgpack cite2c winshell
 
 rem Set Jupyter extensions regardless of connectivity
 call :installJupyterExtensions codefolding/main equation-numbering/main freeze/main toggle_all_line_numbers/main execute_time/ExecuteTime hide_input/main collapsible_headings/main toc2/main
 
 rem Jupyter lab extensions
-call :installNodeJS
+rem call :installNodeJS
 call :installJLabWidgets
 rem Git extension (does not work properly with submodules)
 call :installJLabGit
@@ -243,7 +245,7 @@ rem given absPath must be without any trailing backslash
 )
 :installJLabWidgets
 (
-	call %condapath% install -y ipywidgets
+	rem call %condapath% install -y ipywidgets
 	call %juplabext% install @jupyter-widgets/jupyterlab-manager
 	call %juplabext% install jupyter-matplotlib
     goto :eof
@@ -257,8 +259,7 @@ rem given absPath must be without any trailing backslash
 )
 :upgradeConda
 (
-	call %condapath% update -y -n root conda
-	call %condapath% update -y --all
+    call %condapath% update -y --no-channel-priority --all
     goto :eof
 )
 :upgradePip2
