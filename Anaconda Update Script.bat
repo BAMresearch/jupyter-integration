@@ -159,8 +159,9 @@ call :upgradePip2
 echo Installing/Updating additional packages ...
 call %condapath% install -y --no-channel-priority h5py gitpython ipywidgets
 rem regular anaconda packages get updated by previous update --all
-call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions
-call %condapath% update -y --no-channel-priority -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions
+rem Installing packages from conda-forge channel and make sure they are updated
+call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions jupyterlab-git
+call %condapath% update -y --no-channel-priority -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions jupyterlab-git
 call :installModuleWithPip msgpack cite2c winshell
 
 rem Set Jupyter extensions regardless of connectivity
@@ -214,7 +215,7 @@ rem given absPath must be without any trailing backslash
 (
     echo removeNode1013
     setlocal EnableDelayedExpansion
-    for /F "tokens=2" %%I in ('conda list nodejs -q ^| findstr /b /v #') do (set "nodever=%%I")
+    for /F "tokens=2" %%I in ('%condapath% list nodejs -q ^| findstr /b /v #') do (set "nodever=%%I")
     for /F "delims=. tokens=1,2,3" %%I in ("!nodever!") do (
         if %%I EQU 10 if %%J EQU 13 (
             echo Removing nodejs v10.13 first, it is buggy and can not be installed/upgraded
@@ -253,7 +254,7 @@ rem given absPath must be without any trailing backslash
 )
 :installJLabGit
 (
-	call %pycmd% -m pip install --upgrade jupyterlab-git
+	rem call %pycmd% -m pip install --upgrade jupyterlab-git
 	call %juplabext% install @jupyterlab/git
 	call %jupsrvext% enable --py jupyterlab_git
     goto :eof
@@ -265,11 +266,14 @@ rem given absPath must be without any trailing backslash
 )
 :upgradePip2
 (
+    call %condapath% activate
     call %pycmd% -m pip install --upgrade pip
     goto :eof
 )
 :installModuleWithPip <modName>
 (
+    rem conda env needed to find SSL, python misses the ssl module otherwise
+    call %condapath% activate
 	for %%I in (%*) do (
 		echo.
 		echo Checking module '%%I':
@@ -279,6 +283,8 @@ rem given absPath must be without any trailing backslash
 )
 :uninstallModuleWithPip <modName>
 (
+    rem conda env needed to find SSL, python misses the ssl module otherwise
+    call %condapath% activate
 	for %%I in (%*) do (
 		echo.
 		echo Uninstalling module '%%I':
