@@ -81,6 +81,7 @@ echo.
 :: test some candidate directories, faster than searching ...
 for /d %%I in ("%USERPROFILE%" ^
                "%LOCALAPPDATA%\Continuum" ^
+               "%ALLUSERSPROFILE%" ^
     ) do if exist %%~I\anaconda3 (
         set anapath=%%~I\anaconda3
     )
