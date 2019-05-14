@@ -5,6 +5,9 @@
 @rem
 @rem This file is part of 'Jupyter Git Scripts' ( <url> ).
 @rem Updates the Anaconda Python distribution and sets up Jupyter with GIT.
+@rem
+@rem TODO: Works only reliable if Anaconda is installed for the current user only
+@rem       -> add test for location in c:\programData to detect this
 
 @echo off
 :: stackoverflow.com/questions/20484151/redirecting-output-from-within-batch-file
@@ -144,12 +147,15 @@ reg add HKCU\Software\Classes\Python.File\shell\open\command      /f /ve /d "\"%
 rem reg add HKCU\Software\Classes\Python.File\shellex\DropHandler /f /ve
 reg add HKCU\Software\Classes\Jupyter.Notebook\shell\open\command /f /ve /d "\"%anapath%\pythonw.exe\" \"%anapath%\cwp.py\" \"%anapath%\" \"%anapath%\python.exe\" \"%anapath%\Scripts\jupyter-lab-script.py\" \"%%L\""
 
-rem Test for internet connectivity
-ping -n 2 -w 2000 pythonhosted.org | find "ytes="
-if %ERRORLEVEL% NEQ 0 (
-    echo No internet connectivity, skipping package updates/installation!
-    goto :end
-)
+rem TODO: Test for internet connectivity - does not work always!
+rem set testfn=%TEMP%\test_%RANDOM%%RANDOM%.txt
+rem PowerShell -NoProfile -ExecutionPolicy Bypass -Command "Invoke-WebRequest https://pythonhosted.org/ -OutFile %testfn%"
+rem echo blskdfsfgfsfg > %testfn%
+rem if not exist %testfn% (
+rem    echo No internet connectivity, skipping package updates/installation!
+rem    del %testfn%
+rem    goto :end
+rem ) else ( del %testfn% )
 
 rem Connected to the Internet now
 call :removeNode1013
