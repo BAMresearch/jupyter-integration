@@ -163,7 +163,10 @@ if exist .gitmodules ( attrib +h .gitmodules )
 if exist .ipynb_checkpoints ( attrib +h .ipynb_checkpoints )
 git add ".gitignore" ".gitattributes"
 :: add more files
-copy "%scriptpath%\config\New Project Notebook.ipynb" "%prjdir%"
+call :getDirname dirname "%prjdir%"
+set newnb=%prjdir%\%dirname%.ipynb
+echo New NB: "%newnb%"
+copy "%scriptpath%\config\New Project Notebook.ipynb" "%newnb%"
 mkdir "%prjdir%\info"
 copy "%scriptpath%\config\info\avatar-generic.png" "%prjdir%\info"
 git add info *.ipynb
@@ -176,7 +179,7 @@ echo.
 echo [de] Repositorium erfolgreich eingerichtet.
 echo [en] Repository set up successfully.
 
-start "" "%prjdir%\New Project Notebook.ipynb"
+start "" "%newnb%"
 
 goto :end
 :getFullnameEmail <emailVar> <fullnameVar>
