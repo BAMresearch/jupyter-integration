@@ -140,8 +140,8 @@ if not exist "%prjdir%\%gitcfg%" (
 :: install nbstripout in the current repo,
 :: the current path should be a Git repo by now ...
 %pycmd% -m nbstripout --install
-git config filter.nbstripout.clean "\"%pycmd%\" -m nbstripout"
-git config diff.ipynb.textconv "\"%pycmd%\" -m nbstripout -t"
+git config filter.nbstripout.clean "python -m nbstripout"
+git config diff.ipynb.textconv "python -m nbstripout -t"
 
 :: basic config of GIT repo for Jupyter
 echo .ipynb_checkpoints > .gitignore
