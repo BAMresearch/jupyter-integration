@@ -264,4 +264,4 @@ goto :end
 
 :end
 popd
-timeout 10
+timeout 120
