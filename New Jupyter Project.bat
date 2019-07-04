@@ -154,10 +154,13 @@ copy "%scriptpath%\config\New Project Notebook.ipynb" "%newnb%"
 (
 :: Replace the title in the notebook, keep unix line endings \n
 setlocal enableDelayedExpansion
+:: get user name and email for the notebook
+for /F "tokens=*" %%I in ('git config user.name') do set "fullname=%%I"
+for /F "tokens=*" %%I in ('git config user.email') do set "email=%%I"
 set NL=^
 
 
-python -c "import codecs; nb='' !NL!with codecs.open(r'%newnb%', 'r', encoding='utf-8') as fd: !NL!    nb = fd.read().replace(u'Some meaningful title', u'%dirname%') !NL!with codecs.open(r'%newnb%', 'w', encoding='utf-8') as fd: !NL!    fd.write(nb)"
+python -c "import codecs; nb='' !NL!with codecs.open(r'%newnb%', 'r', encoding='utf-8') as fd: !NL!    nb = fd.read().replace(u'Some meaningful title', u'%dirname%').replace('&lt;full name&gt;', u'%fullname%').replace('&lt;email&gt;@&lt;provider&gt;.de', u'%email%') !NL!with codecs.open(r'%newnb%', 'w', encoding='utf-8') as fd: !NL!    fd.write(nb)"
 setlocal DisableDelayedExpansion
 )
 :: copy some meta data place holders to the project folder
