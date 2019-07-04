@@ -151,6 +151,16 @@ call :getDirname dirname "%prjdir%"
 set newnb=%prjdir%\%dirname%.ipynb
 echo New NB: "%newnb%"
 copy "%scriptpath%\config\New Project Notebook.ipynb" "%newnb%"
+(
+:: Replace the title in the notebook, keep unix line endings \n
+setlocal enableDelayedExpansion
+set NL=^
+
+
+python -c "import codecs; nb='' !NL!with codecs.open(r'%newnb%', 'r', encoding='utf-8') as fd: !NL!    nb = fd.read().replace(u'Some meaningful title', u'%dirname%') !NL!with codecs.open(r'%newnb%', 'w', encoding='utf-8') as fd: !NL!    fd.write(nb)"
+setlocal DisableDelayedExpansion
+)
+:: copy some meta data place holders to the project folder
 mkdir "%prjdir%\info"
 copy "%scriptpath%\config\info\avatar-generic.png" "%prjdir%\info"
 git add info *.ipynb
