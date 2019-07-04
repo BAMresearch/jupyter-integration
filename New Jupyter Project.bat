@@ -144,10 +144,12 @@ git config filter.nbstripout.clean "python -m nbstripout"
 git config diff.ipynb.textconv "python -m nbstripout -t"
 
 :: basic config of GIT repo for Jupyter
-echo .ipynb_checkpoints > .gitignore
-echo __pycache__ >> .gitignore
-echo *.ipynb -text >> .gitattributes
-echo *.ASC   -text >> .gitattributes
+echo .ipynb_checkpoints  > .gitignore
+echo __pycache__        >> .gitignore
+echo *.ipynb -text             >> .gitattributes
+echo *.ASC   -text             >> .gitattributes
+echo *.ipynb filter=nbstripout >> .gitattributes
+echo *.ipynb diff=ipynb        >> .gitattributes
 :: add common submodule
 for %%m in (%NewProjectSubMods%) do (
     if not "%%m"=="" (
