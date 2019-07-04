@@ -129,11 +129,14 @@ echo *.ipynb -text             >> .gitattributes
 echo *.ASC   -text             >> .gitattributes
 echo *.ipynb filter=nbstripout >> .gitattributes
 echo *.ipynb diff=ipynb        >> .gitattributes
+
 :: add common submodule
 for %%m in (%NewProjectSubMods%) do (
     if not "%%m"=="" (
-        echo "Adding submodule '%%m'"
-        git submodule add "%%m"
+        for /f "delims=/ tokens=1,*" %%I in ("%%m") do (
+            echo Adding submodule '%%I//%username%^@%%J'
+            git submodule add      %%I//%username%^@%%J
+        )
     )
 )
 git submodule init
