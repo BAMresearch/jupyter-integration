@@ -58,33 +58,12 @@ if not exist "%gitcmd%" (
 call :getParentPath gitpath "%gitcmd%"
 echo Git was FOUND:      '%gitcmd%'
 
-:: Check for Anaconda Python environment being installed
-:: test some candidate directories, faster than searching ...
-for /d %%I in ("%USERPROFILE%" ^
-               "%LOCALAPPDATA%\Continuum" ^
-    ) do if exist %%~I\Anaconda3 (
-        set anapath=%%~I\Anaconda3
-    )
-if exist "%USERPROFILE%\Anaconda3"  set "anapath=%%USERPROFILE%%\Anaconda3"
-if exist "%LOCALAPPDATA%\Continuum\Anaconda3" set "anapath=%%LOCALAPPDATA%%\Continuum\Anaconda3"
-
-call set "condapath=%anapath%\Library\bin\conda.bat"
-if not exist "%condapath%" (
-    echo MISSING Anaconda:   '%condapath%'
-    echo [de]
-    echo   Die Anaconda Python Distribution wurde nicht gefunden! 
-    echo   Bitte zunaechst Anaconda ^(Python 3, 64 bit^) mit Standard-
-    echo   einstellungen installieren und dieses Skript erneut ausfuehren.
-    echo [en]
-    echo   The Anaconda Python Distribution was not found!
-    echo   Please install Anaconda ^(Python 3, 64 bit^) with default settings
-    echo   first and run this script again.
-    start https://www.anaconda.com/download/
+python -V > nul 2>&1
+if %errorlevel% NEQ 0 (
+    echo   Python was not found, is not in PATH!
+    echo   Please, first run 'Anaconda Update Script.bat' in %scriptpath%.
     goto :end
 )
-echo Anaconda was FOUND: '%condapath%'
-call set "pycmd=%anapath%\python.exe"
-echo Using Python at:    '%pycmd%'
 
 echo.
 echo [de] Richte das Projektverzeichnis ein ...
@@ -139,7 +118,7 @@ if not exist "%prjdir%\%gitcfg%" (
 
 :: install nbstripout in the current repo,
 :: the current path should be a Git repo by now ...
-%pycmd% -m nbstripout --install
+python -m nbstripout --install
 git config filter.nbstripout.clean "python -m nbstripout"
 git config diff.ipynb.textconv "python -m nbstripout -t"
 
