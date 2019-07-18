@@ -163,11 +163,11 @@ echo Upgrading conda and pip ...
 call :upgradeConda
 call :upgradePip2
 echo Installing/Updating additional packages ...
-call %condapath% install -y --no-channel-priority h5py gitpython ipywidgets
+call %condapath% install -y h5py gitpython ipywidgets
 rem regular anaconda packages get updated by previous update --all
 rem Installing packages from conda-forge channel and make sure they are updated
 call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions jupyterlab-git
-call %condapath% update -y --no-channel-priority -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions jupyterlab-git
+call %condapath% update -y -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions jupyterlab-git
 call :installModuleWithPip msgpack cite2c winshell
 
 rem Set Jupyter extensions regardless of connectivity
@@ -269,7 +269,7 @@ rem given absPath must be without any trailing backslash
 )
 :upgradeConda
 (
-    call %condapath% update -y --no-channel-priority --all
+    call %condapath% update -y --all
     goto :eof
 )
 :upgradePip2
