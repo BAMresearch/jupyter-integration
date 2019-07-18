@@ -191,8 +191,10 @@ rem optional packages
 :: jupyter labextension install jupyterlab-spreadsheet
 :: conda install -y flake8
 :: jupyter labextension install jupyterlab-flake8
-
 :: jupyter labextension enable jupyterlab-spreadsheet jupyterlab-flake8
+
+:: Show Jupyter Lab extensions and version numbers, to be included in the log file
+call %juplabext% list
 
 goto :end
 :getParentPath <resultVar> <pathVar>
@@ -322,6 +324,7 @@ rem given absPath must be without any trailing backslash
 )
 
 :end
+@echo off
 popd
 setlocal EnableDelayedExpansion
 set "endTime=%time: =0%"
