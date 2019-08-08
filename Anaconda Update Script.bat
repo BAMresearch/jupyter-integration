@@ -269,7 +269,7 @@ rem given absPath must be without any trailing backslash
 )
 :upgradeConda
 (
-    call %condapath% update -y --all
+    call %condapath% update -y --no-channel-priority --all
     goto :eof
 )
 :upgradePip2
