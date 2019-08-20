@@ -16,7 +16,7 @@ echo Configuring Anaconda,
 echo progress messages are written to
 echo   %logfile%
 echo for reference in case of errors.
-echo It may take 5-10 min, depending on the computer ...
+echo It may take 30-40 min, depending on the computer ...
 echo.
 call :sub > "%logfile%" 2>&1
 set startln=0
