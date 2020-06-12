@@ -118,17 +118,15 @@ if not exist "%prjdir%\%gitcfg%" (
 
 :: install nbstripout in the current repo,
 :: the current path should be a Git repo by now ...
-python -m nbstripout --install
+python -m nbstripout --install --attributes .gitattributes
 git config filter.nbstripout.clean "python -m nbstripout"
 git config diff.ipynb.textconv "python -m nbstripout -t"
 
 :: basic config of GIT repo for Jupyter
-echo .ipynb_checkpoints  > .gitignore
-echo __pycache__        >> .gitignore
-echo *.ipynb -text             >> .gitattributes
-echo *.ASC   -text             >> .gitattributes
-echo *.ipynb filter=nbstripout >> .gitattributes
-echo *.ipynb diff=ipynb        >> .gitattributes
+echo .ipynb_checkpoints > .gitignore
+echo __pycache__ >> .gitignore
+echo *.ipynb -text >> .gitattributes
+echo *.ASC   -text >> .gitattributes
 
 :: add common submodule
 for %%m in (%NewProjectSubMods%) do (
