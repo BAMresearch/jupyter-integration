@@ -1,10 +1,9 @@
 # Jupyter Git Scripts
 
 A collection of batch scripts helping with version controlled Jupyter
-notebooks on Windows.
-A JupyterLab extension for GIT allows to commit changes on a notebook
+notebooks on Windows and associates double-click on `.ipynb` files with JupyterLab.
+Installs an extension for GIT to commit changes on a notebook
 directly from JupyterLab, no command-line interaction necessary.
-Associates double-click on `.ipynb` files with JupyterLab.
 
 The scripts are intended to be run by restricted users
 typically found in corporate computing environments.
