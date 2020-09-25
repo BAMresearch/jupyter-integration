@@ -154,7 +154,6 @@ rem    goto :end
 rem ) else ( del %testfn% )
 
 rem Connected to the Internet now
-call :removeNode1013
 echo Upgrading conda ...
 call %condapath% update -y conda
 call %condapath% update -y --all
@@ -166,7 +165,6 @@ call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyterlab-gi
 call %condapath% update -y -c conda-forge nodejs nbstripout lmfit jupyterlab-git
 
 rem Jupyter lab extensions
-rem call :installNodeJS
 call %juplabext% install @jupyter-widgets/jupyterlab-manager
 call %juplabext% install jupyter-matplotlib
 rem Git extension (does not work properly with submodules)
@@ -210,35 +208,6 @@ rem given absPath must be without any trailing backslash
 	setlocal DisableDelayedExpansion
 	echo Adjusted PATH:
 	reg query HKCU\Environment /f Path
-    goto :eof
-)
-:removeNode1013
-(
-    echo removeNode1013
-    setlocal EnableDelayedExpansion
-    for /F "tokens=2" %%I in ('%condapath% list nodejs -q ^| findstr /b /v #') do (set "nodever=%%I")
-    for /F "delims=. tokens=1,2,3" %%I in ("!nodever!") do (
-        if %%I EQU 10 if %%J EQU 13 (
-            echo Removing nodejs v10.13 first, it is buggy and can not be installed/upgraded
-            call %condapath% remove nodejs -y
-        )
-    )
-    setlocal DisableDelayedExpansion
-    goto :eof
-)
-:installNodeJS
-(
-    setlocal EnableDelayedExpansion
-    where npm >nul 2>nul
-    if !ERRORLEVEL! NEQ 0 (
-        echo NPM/nodejs not found, installing it first
-        call %condapath% install -c conda-forge -y nodejs
-    ) else (
-        rem Updating nodejs
-        call npm install -g npm
-        call npm install -g npm
-    )
-    setlocal DisableDelayedExpansion
     goto :eof
 )
 :fixInconsistentConda
