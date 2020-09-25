@@ -171,19 +171,6 @@ rem Git extension (does not work properly with submodules)
 call %juplabext% install @jupyterlab/git
 call %jupsrvext% enable --py jupyterlab_git
 
-rem Jupyter Lab extensions
-rem Templates
-:: jupyter labextension install jupyterlab_templates
-:: jupyter serverextension enable --py jupyterlab_templates
-rem install our own template
-:: python -c "import jupyterlab_templates, glob, os, shutil; j=os.path.join; p=j(os.path.dirname(jupyterlab_templates.__file__), 'templates'); [os.remove(fn) for fn in glob.glob(j(p, '*.ipynb'))]; fn=j(os.path.expanduser('~'), 'Desktop', 'Our Jupyter Template.ipynb'); if os.path.isfile(fn): shutil.copy(fn, p);"
-
-rem optional packages
-:: jupyter labextension install jupyterlab-spreadsheet
-:: conda install -y flake8
-:: jupyter labextension install jupyterlab-flake8
-:: jupyter labextension enable jupyterlab-spreadsheet jupyterlab-flake8
-
 :: Show Jupyter Lab extensions and version numbers, to be included in the log file
 call %juplabext% list
 
