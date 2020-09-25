@@ -106,7 +106,6 @@ if not exist "%condapath%" (
 echo Anaconda was FOUND: '%condapath%'
 set pycmd=%anapath%\python.exe
 echo Using Python at:    '%pycmd%'
-set pipcmd=%anapath%\Scripts\pip.exe
 set juplabext=%anapath%\Scripts\jupyter-labextension.exe
 set jupsrvext=%anapath%\Scripts\jupyter-serverextension.exe
 set jupnbext=%anapath%\Scripts\jupyter-nbextension.exe
@@ -118,9 +117,6 @@ echo.
 echo [de] Pruefe ^& aktualisiere erforderliche Python-Module ...
 echo [en] Checking ^& updating required Python modules ...
 echo.
-
-rem Uninstall obsolete packages from earlier development
-call :uninstallModuleWithPip nbopen
 rem remove problematic package resulting in VS140COMNTOOLS (VS not found) error
 call %condapath% remove -y vs2015_win-64
 rem Remove obsolete entries
@@ -159,16 +155,14 @@ rem ) else ( del %testfn% )
 
 rem Connected to the Internet now
 call :removeNode1013
-echo Upgrading conda and pip ...
 call :upgradeConda
-call :upgradePip2
+echo Upgrading conda ...
 echo Installing/Updating additional packages ...
 call %condapath% install -y h5py gitpython ipywidgets
 rem regular anaconda packages get updated by previous update --all
 rem Installing packages from conda-forge channel and make sure they are updated
 call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions jupyterlab-git
 call %condapath% update -y -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions jupyterlab-git
-call :installModuleWithPip msgpack cite2c winshell
 
 rem Set Jupyter extensions regardless of connectivity
 call :installJupyterExtensions codefolding/main equation-numbering/main freeze/main toggle_all_line_numbers/main execute_time/ExecuteTime hide_input/main collapsible_headings/main toc2/main
@@ -183,7 +177,6 @@ call %jupsrvext% enable --py jupyterlab_git
 
 rem Jupyter Lab extensions
 rem Templates
-:: pip install jupyterlab_templates
 :: jupyter labextension install jupyterlab_templates
 :: jupyter serverextension enable --py jupyterlab_templates
 rem install our own template
@@ -260,34 +253,6 @@ rem given absPath must be without any trailing backslash
     call %condapath% update -y --no-channel-priority --all
     goto :eof
 )
-:upgradePip2
-(
-    call %condapath% activate
-    call %pycmd% -m pip install --upgrade pip
-    goto :eof
-)
-:installModuleWithPip <modName>
-(
-    rem conda env needed to find SSL, python misses the ssl module otherwise
-    call %condapath% activate
-	for %%I in (%*) do (
-		echo.
-		echo Checking module '%%I':
-		call %pycmd% -m pip install --upgrade %%I
-	)
-    goto :eof
-)
-:uninstallModuleWithPip <modName>
-(
-    rem conda env needed to find SSL, python misses the ssl module otherwise
-    call %condapath% activate
-	for %%I in (%*) do (
-		echo.
-		echo Uninstalling module '%%I':
-		call %pycmd% -m pip uninstall --yes %%I
-	)
-    goto :eof
-)
 :installJupyterExtensions
 (
     call %jupcontrib% nbextensions install --user
@@ -296,7 +261,7 @@ rem given absPath must be without any trailing backslash
         call %jupnbext% enable %%I
     )
     :: github.com/takluyver/cite2c
-    call %pycmd% -m cite2c.install
+    :: call %pycmd% -m cite2c.install
     :: fix for console window remaining open and restarting on win10
     :: github.com/takluyver/nbopen/issues/54#issuecomment-379711047
 	setlocal EnableDelayedExpansion
