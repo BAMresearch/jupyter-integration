@@ -155,8 +155,9 @@ rem ) else ( del %testfn% )
 
 rem Connected to the Internet now
 call :removeNode1013
-call :upgradeConda
 echo Upgrading conda ...
+call %condapath% update -y conda
+call %condapath% update -y --all
 echo Installing/Updating additional packages ...
 call %condapath% install -y h5py gitpython ipywidgets
 rem regular anaconda packages get updated by previous update --all
