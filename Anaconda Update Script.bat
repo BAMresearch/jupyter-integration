@@ -162,11 +162,8 @@ echo Installing/Updating additional packages ...
 call %condapath% install -y h5py gitpython ipywidgets
 rem regular anaconda packages get updated by previous update --all
 rem Installing packages from conda-forge channel and make sure they are updated
-call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions jupyterlab-git
-call %condapath% update -y -c conda-forge nodejs nbstripout lmfit jupyter_contrib_nbextensions jupyterlab-git
-
-rem Set Jupyter extensions regardless of connectivity
-call :installJupyterExtensions codefolding/main equation-numbering/main freeze/main toggle_all_line_numbers/main execute_time/ExecuteTime hide_input/main collapsible_headings/main toc2/main
+call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyterlab-git
+call %condapath% update -y -c conda-forge nodejs nbstripout lmfit jupyterlab-git
 
 rem Jupyter lab extensions
 rem call :installNodeJS
