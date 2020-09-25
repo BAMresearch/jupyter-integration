@@ -175,9 +175,11 @@ call :installJupyterExtensions codefolding/main equation-numbering/main freeze/m
 
 rem Jupyter lab extensions
 rem call :installNodeJS
-call :installJLabWidgets
+call %juplabext% install @jupyter-widgets/jupyterlab-manager
+call %juplabext% install jupyter-matplotlib
 rem Git extension (does not work properly with submodules)
-call :installJLabGit
+call %juplabext% install @jupyterlab/git
+call %jupsrvext% enable --py jupyterlab_git
 
 rem Jupyter Lab extensions
 rem Templates
@@ -251,20 +253,6 @@ rem given absPath must be without any trailing backslash
 :fixInconsistentConda
 (
     rem for /f "delims=:= tokens=2,3*" %i in ('%condapath% install fgdfgsdfgdf 2^>^&1 ^| findstr "=="') do ( echo %i;%j;%k )
-    goto :eof
-)
-:installJLabWidgets
-(
-	rem call %condapath% install -y ipywidgets
-	call %juplabext% install @jupyter-widgets/jupyterlab-manager
-	call %juplabext% install jupyter-matplotlib
-    goto :eof
-)
-:installJLabGit
-(
-	rem call %pycmd% -m pip install --upgrade jupyterlab-git
-	call %juplabext% install @jupyterlab/git
-	call %jupsrvext% enable --py jupyterlab_git
     goto :eof
 )
 :upgradeConda
