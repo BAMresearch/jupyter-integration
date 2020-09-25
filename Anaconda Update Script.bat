@@ -269,7 +269,6 @@ rem given absPath must be without any trailing backslash
 		if exist "%%I" set kernpath=%%I\kernel.json
 	)
 	echo Updating '!kernpath!'.
-	rem Reverting former nbopen patch of python exec in kernel.json
 	call %pycmd% -c "fd=open(r'!kernpath!','r'); buf=fd.read().replace('pythonw.exe','python.exe'); fd.close(); fd=open(r'!kernpath!','w'); fd.write(buf); fd.close()"
 
 	setlocal DisableDelayedExpansion
