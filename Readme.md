@@ -25,7 +25,7 @@ typically found in corporate computing environments.
 
 ```
 NewProjectOrigin=https://<your GIT server>/%USERNAME%
-NewProjectSubMods=https://<your GIT server>/<some subdir>/commontools.git
+NewProjectSubMods=https://<your GIT server>/<some subdir>/jupyter_analysis_tools.git
 ```
 
 ### `Anaconda Update Script.bat`

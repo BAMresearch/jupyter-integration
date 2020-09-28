@@ -14,7 +14,7 @@
 @rem with the following content (without leading 'rem '):
 
 @rem NewProjectOrigin=https://<your GIT server>/%USERNAME%
-@rem NewProjectSubMods=https://<your GIT server>/<some subdir>/commontools.git
+@rem NewProjectSubMods=https://<your GIT server>/<some subdir>/jupyter_analysis_tools.git
 
 @echo off
 setlocal DisableDelayedExpansion EnableExtensions
