@@ -118,15 +118,15 @@ if not exist "%prjdir%\%gitcfg%" (
 
 :: install nbstripout in the current repo,
 :: the current path should be a Git repo by now ...
-python -m nbstripout --install --attributes .gitattributes
-git config filter.nbstripout.clean "python -m nbstripout -t | dos2unix"
-git config diff.ipynb.textconv "sh -c 'python -m nbstripout -t \"$0\" | dos2unix'
+::python -m nbstripout --install --attributes .gitattributes
+::git config filter.nbstripout.clean "python -m nbstripout -t | dos2unix"
+::git config diff.ipynb.textconv "sh -c 'python -m nbstripout -t \"$0\" | dos2unix'
 
 :: basic config of GIT repo for Jupyter
 echo .ipynb_checkpoints > .gitignore
 echo __pycache__ >> .gitignore
-echo *.ipynb -text >> .gitattributes
-echo *.ASC   -text >> .gitattributes
+::echo *.ipynb -text >> .gitattributes
+::echo *.ASC   -text >> .gitattributes
 
 :: add common submodule
 for %%m in (%NewProjectSubMods%) do (
@@ -137,11 +137,12 @@ for %%m in (%NewProjectSubMods%) do (
 )
 git submodule init
 :: hide repository and meta data files
-attrib +h .gitattributes
+::attrib +h .gitattributes
 attrib +h .gitignore
 if exist .gitmodules ( attrib +h .gitmodules )
 if exist .ipynb_checkpoints ( attrib +h .ipynb_checkpoints )
-git add ".gitignore" ".gitattributes"
+::git add ".gitignore" ".gitattributes"
+git add ".gitignore"
 :: add more files
 call :getDirname dirname "%prjdir%"
 set newnb=%prjdir%\%dirname%.ipynb
