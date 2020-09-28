@@ -152,11 +152,50 @@ rem    echo No internet connectivity, skipping package updates/installation!
 rem    del %testfn%
 rem    goto :end
 rem ) else ( del %testfn% )
-
 rem Connected to the Internet now
-echo Upgrading conda ...
-call %condapath% update -y conda
-call %condapath% update -y --all
+
+echo Updating Anaconda ...
+::call %condapath% update -y conda
+::call %condapath% update -y --all
+
+@echo off
+:: get latest available version of anaconda metapackage
+for /F "tokens=2,3" %%I in ('%condapath% search anaconda') do (
+    set latest_anaconda=%%I
+    set latest_anaconda_build=%%J
+)
+echo Latest Anaconda: '%latest_anaconda%', build '%latest_anaconda_build%'
+
+:: get current installed version of anaconda metapackage
+for /F "tokens=2,3" %%I in ('%condapath% list anaconda$') do (
+    set current_anaconda=%%I
+    set current_anaconda_build=%%J
+)
+echo Current Anaconda: '%current_anaconda%', build '%current_anaconda_build%'
+@echo on
+
+:: install the latest Anaconda package if the is a new one
+if not %latest_anaconda%==%current_anaconda% (
+    %condapath% install -y anaconda=%latest_anaconda%
+)
+
+goto :skipped
+:: update the Python version if there is a newer build available
+if not %latest_anaconda_build%==%current_anaconda_build% (
+    @echo on
+    setlocal EnableDelayedExpansion
+    for /F "delims=_ tokens=1" %%I in ("%latest_anaconda_build%") do (
+        set stripped_build=%%I
+        set new_py_ver=%stripped_build:~2,1%.%stripped_build:~3%
+    )
+    echo Installing new python version _!new_py_ver!_
+    %condapath% install -y python=!new_py_ver!
+    setlocal DisableDelayedExpansion
+    @echo off
+)
+:skipped
+
+
 echo Installing/Updating additional packages ...
 call %condapath% install -y h5py gitpython ipywidgets
 rem regular anaconda packages get updated by previous update --all
@@ -200,11 +239,6 @@ rem given absPath must be without any trailing backslash
 :fixInconsistentConda
 (
     rem for /f "delims=:= tokens=2,3*" %i in ('%condapath% install fgdfgsdfgdf 2^>^&1 ^| findstr "=="') do ( echo %i;%j;%k )
-    goto :eof
-)
-:upgradeConda
-(
-    call %condapath% update -y --no-channel-priority --all
     goto :eof
 )
 :installJupyterExtensions
