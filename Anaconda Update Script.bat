@@ -200,8 +200,8 @@ echo Installing/Updating additional packages ...
 call %condapath% install -y h5py gitpython ipywidgets
 rem regular anaconda packages get updated by previous update --all
 rem Installing packages from conda-forge channel and make sure they are updated
-call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyterlab-git
-call %condapath% update -y -c conda-forge nodejs nbstripout lmfit jupyterlab-git
+call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyterlab-git ipympl
+call %condapath% update -y -c conda-forge nodejs nbstripout lmfit jupyterlab-git ipympl
 
 rem Jupyter lab extensions
 call %juplabext% install @jupyter-widgets/jupyterlab-manager
