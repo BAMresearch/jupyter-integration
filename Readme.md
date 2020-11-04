@@ -10,6 +10,19 @@ typically found in corporate computing environments.
 
 ## Features
 
+### `Anaconda Update Script.bat`
+
+- Registers the Jupyter notebook file extension `.ipynb` so that a double-click
+  starts JupyterLab and opens the notebook.
+- Installs Jupyter extensions for interactive widgets (ipywidgets) in JupyterLab
+  and installs nodeJS which is required for that.
+- Installs GIT extension `jupyterlab_git` for JupyterLab.
+- Adds some TortoiseGit actions to the context menu for easier access (*diff*, *log*, *rename*, *delete*).
+- Updates the Anaconda Python distribution
+  and creates a log file of the process next to the scripts location.
+- Does not require admin rights.
+  (Assumes Anaconda is installed in the users home folder.)
+
 ### `New Jupyter Project.bat`
 
 1. Presents a dialog asking the user for an empty project folder,
@@ -27,18 +40,6 @@ typically found in corporate computing environments.
 NewProjectOrigin=https://<your GIT server>/%USERNAME%
 NewProjectSubMods=https://<your GIT server>/<some subdir>/jupyter_analysis_tools.git
 ```
-
-### `Anaconda Update Script.bat`
-
-- Updates the Anaconda Python distribution
-  and creates a log file of the process next to the scripts location.
-- Registers the Jupyter notebook file extension `.ipynb` so that a double-click
-  starts JupyterLab and opens the notebook.
-- Installs Jupyter extensions for interactive widgets (ipywidgets) in JupyterLab
-  and installs nodeJS which is required for that.
-- Installs GIT extension `jupyterlab_git` for JupyterLab.
-- Does not require admin rights.
-  (Assumes Anaconda is installed in the users home folder.)
 
 ### `Pull All Projects.bat`
 
