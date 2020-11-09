@@ -74,10 +74,11 @@ if not exist "%gitcmd%" (
     reg add HKCU\Software\TortoiseGit /f /v ContextMenuEntries /t REG_DWORD /d 0x3641e
     reg add HKCU\Software\TortoiseGit /f /v ContextMenuEntrieshigh /t REG_DWORD /d 0x220
     :: add GIT to users PATH if not already there
+    setlocal EnableDelayedExpansion
     call :getParentPath gitpath "%gitcmd%"
-    call :addToPATH "%gitpath:~0,-1%"
+    call :addToPATH "!gitpath:~0,-1!"
+    setlocal DisableDelayedExpansion
 )
-
 echo.
 
 :: Check for Anaconda Python environment being installed
