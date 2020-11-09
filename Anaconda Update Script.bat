@@ -89,6 +89,7 @@ for /d %%I in ("%USERPROFILE%" ^
         set anapath=%%~I\anaconda3
     )
 set condapath=%anapath%\Library\bin\conda.bat
+set condaActivate=%anapath%\Scripts\activate.bat
 rem in current versions of Anaconda: %anapath%\condabin\conda.bat
 if not exist "%condapath%" (
     echo MISSING Anaconda:   '%condapath%'
@@ -158,7 +159,8 @@ echo Updating Anaconda ...
 ::call %condapath% update -y conda
 ::call %condapath% update -y --all
 
-@echo off
+@echo on
+call %condaActivate%
 :: get latest available version of anaconda metapackage
 for /F "tokens=2,3" %%I in ('%condapath% search anaconda') do (
     set latest_anaconda=%%I
