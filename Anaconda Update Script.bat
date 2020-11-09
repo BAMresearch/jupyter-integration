@@ -207,10 +207,10 @@ call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyterlab-gi
 call %condapath% update -y -c conda-forge nodejs nbstripout lmfit jupyterlab-git ipympl
 
 rem Jupyter lab extensions
-call %juplabext% install @jupyter-widgets/jupyterlab-manager
-call %juplabext% install jupyter-matplotlib
+call %juplabext% install -y @jupyter-widgets/jupyterlab-manager
+call %juplabext% install -y jupyter-matplotlib
 rem Git extension (does not work properly with submodules)
-call %juplabext% install @jupyterlab/git
+call %juplabext% install -y @jupyterlab/git
 call %jupsrvext% enable --py jupyterlab_git
 
 :: Show Jupyter Lab extensions and version numbers, to be included in the log file
