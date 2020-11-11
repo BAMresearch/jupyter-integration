@@ -19,15 +19,16 @@ echo for reference in case of errors.
 echo It may take 30-40 min, depending on the computer ...
 echo.
 call :sub > "%logfile%" 2>&1
+:: show the last 18 lines of logfile when done
 set startln=0
 :: has to work for UNC network paths as well as on the drive
 for /F "delims=: tokens=*" %%I in ('find /v /c "" "%logfile%"') do for %%A in (%%~I) do (
-	set "startln=%%A"
+    set "startln=%%A"
 )
-set /a startln=%startln%-18
-::echo startln='%startln%'
+set /a startln=%startln%-1
+:: echo startln='%startln%'
 if %startln% leq 0 set startln=0
-more /c /e +%startln% < "%logfile%"
+more /e +%startln% < "%logfile%"
 timeout 30
 goto :end
 
