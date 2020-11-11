@@ -26,8 +26,8 @@ for /F "delims=: tokens=*" %%I in ('find /v /c "" "%logfile%"') do for %%A in (%
     set "startln=%%A"
 )
 set /a startln=%startln%-1
-:: echo startln='%startln%'
 if %startln% leq 0 set startln=0
+::echo startln='%startln%'
 more /e +%startln% < "%logfile%"
 timeout 30
 goto :end
@@ -157,14 +157,9 @@ rem    goto :end
 rem ) else ( del %testfn% )
 rem Connected to the Internet now
 
-echo Updating Anaconda ...
-::call %condapath% update -y conda
-::call %condapath% update -y --all
-
 @echo on
 call %condaActivate%
 call :updateAnacondaPackage
-:: call %condapath% deactivate
 
 echo Installing/Updating additional packages ...
 call %condapath% install -y h5py gitpython ipywidgets
@@ -181,11 +176,13 @@ call %juplabext% install -y @jupyterlab/git
 call %jupsrvext% enable --py jupyterlab_git
 
 :: Show Jupyter Lab extensions and version numbers, to be included in the log file
-:: call %juplabext% list
+call %juplabext% list
+call %condapath% deactivate
 
 goto :end
 :updateAnacondaPackage
 (
+    echo Updating Anaconda ...
     setlocal EnableDelayedExpansion
     :: get latest available version of anaconda metapackage
     for /F "tokens=2,3" %%I in ('%condapath% search anaconda') do (
