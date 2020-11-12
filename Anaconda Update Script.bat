@@ -176,7 +176,7 @@ call %juplabext% install -y @jupyterlab/git
 call %jupsrvext% enable --py jupyterlab_git
 
 :: Show Jupyter Lab extensions and version numbers, to be included in the log file
-call %juplabext% list
+::call %juplabext% list
 call %condapath% deactivate
 
 goto :end
