@@ -25,6 +25,8 @@ after_build:
   - cd .. && pwd
   # checkout github pages branch, built html files persist
   - git checkout gh-pages
+  # removed most of previous built files
+  - rm -Rf _* *.*
   # move generated file to top-level folder
   - mv -fv docs/_build/html/* . && mv -fv docs/_build/html/.* .
   # remove any remainders
