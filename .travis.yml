@@ -1,0 +1,16 @@
+dist: focal
+
+jobs:
+    include:
+        - stage: website
+          language: python
+          script:
+              - make html
+
+          deploy:
+              provider: pages
+              cleanup: true
+              #github_token: $TRAVIS_GH_PAGES_KEY
+              local_dir: "_build/"
+              on:
+                  branch: master
