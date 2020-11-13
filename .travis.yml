@@ -1,4 +1,6 @@
+os: linux
 dist: focal
+language: python
 
 jobs:
     include:
@@ -8,6 +10,7 @@ jobs:
               - make html
 
           deploy:
+              strategy: git
               provider: pages
               cleanup: true
               #github_token: $TRAVIS_GH_PAGES_KEY
