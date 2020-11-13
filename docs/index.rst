@@ -7,9 +7,15 @@ Welcome to jupyter-integration's documentation!
 ===============================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 3
+   :caption: deutsch:
 
-   guide.de.md
-   guide.en.md
+   de_versionierung_mit_git.md
+   de_jupyterlab_mit_versionierung.md
 
+.. toctree::
+   :maxdepth: 3
+   :caption: english:
+
+   en_version_control_with_git.md
+   en_jupyterlab_with_version_control.md
