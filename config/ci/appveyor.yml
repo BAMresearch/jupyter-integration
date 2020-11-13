@@ -22,6 +22,15 @@ install:
 build_script:
   - cd docs && make html
 
+after_build:
+  - git checkout gh-pages
+  - mv -fv docs/_build/html/* .
+  - rm -Rf docs
+  - |
+    git add -A \
+    && git ci -m "Generated gh-pages for commit $(git log master -1 --pretty=oneline --abbrev-commit)" \
+    && git push origin gh-pages
+
 notifications:
   - provider: Email
     to:
