@@ -158,8 +158,26 @@ rem ) else ( del %testfn% )
 rem Connected to the Internet now
 
 @echo on
+echo Updating Anaconda ...
 call %condaActivate%
-call :updateAnacondaPackage
+setlocal EnableDelayedExpansion
+:: get latest available version of anaconda metapackage
+for /F "tokens=2,3" %%I in ('%condapath% search anaconda') do (
+    set latest_anaconda=%%I
+    set latest_anaconda_build=%%J
+)
+echo Latest Anaconda: '!latest_anaconda!', build '!latest_anaconda_build!'
+:: get current installed version of anaconda metapackage
+for /F "tokens=2,3" %%I in ('%condapath% list anaconda$') do (
+    set current_anaconda=%%I
+    set current_anaconda_build=%%J
+)
+echo Current Anaconda: '!current_anaconda!', build '!current_anaconda_build!'
+:: install the latest Anaconda package if the is a new one
+if not !latest_anaconda!==!current_anaconda! (
+    call %condapath% install -y anaconda=!latest_anaconda!
+)
+setlocal DisableDelayedExpansion
 
 echo Installing/Updating additional packages ...
 call %condapath% install -y h5py gitpython ipywidgets
@@ -176,45 +194,10 @@ call %juplabext% install -y @jupyterlab/git
 call %jupsrvext% enable --py jupyterlab_git
 
 :: Show Jupyter Lab extensions and version numbers, to be included in the log file
-::call %juplabext% list
+call %juplabext% list
 call %condapath% deactivate
 
 goto :end
-:updateAnacondaPackage
-(
-    echo Updating Anaconda ...
-    setlocal EnableDelayedExpansion
-    :: get latest available version of anaconda metapackage
-    for /F "tokens=2,3" %%I in ('%condapath% search anaconda') do (
-        set latest_anaconda=%%I
-        set latest_anaconda_build=%%J
-    )
-    echo Latest Anaconda: '!latest_anaconda!', build '!latest_anaconda_build!'
-
-    :: get current installed version of anaconda metapackage
-    for /F "tokens=2,3" %%I in ('%condapath% list anaconda$') do (
-        set current_anaconda=%%I
-        set current_anaconda_build=%%J
-    )
-    echo Current Anaconda: '!current_anaconda!', build '!current_anaconda_build!'
-
-    :: install the latest Anaconda package if the is a new one
-    if not !latest_anaconda!==!current_anaconda! (
-        %condapath% install -y anaconda=!latest_anaconda!
-    )
-    :: update the Python version if there is a newer build available
-    :: skipping atm, because it does not work reliably
-    goto :eof
-    if not !latest_anaconda_build!==!current_anaconda_build! (
-        for /F "delims=_ tokens=1" %%I in ("!latest_anaconda_build!") do (
-            set stripped_build=%%I
-            set new_py_ver=%stripped_build:~2,1%.%stripped_build:~3%
-        )
-        echo Installing new python version _!new_py_ver!_
-        %condapath% install -y python=!new_py_ver!
-    )
-    goto :eof
-)
 :getParentPath <resultVar> <pathVar>
 (
     set "%~1=%~dp2"
@@ -275,4 +258,4 @@ set /A "elap=((((10!end:%time:~2,1%=%%100)*60+1!%%100)-((((10!start:%time:~2,1%=
 rem Convert elapsed time to HH:MM:SS:CC format:
 set /A "cc=elap%%100+100,elap/=100,ss=elap%%60+100,elap/=60,mm=elap%%60+100,hh=elap/60+100"
 
-echo Update finished on %DATE%, %TIME% (%hh:~1%%time:~2,1%%mm:~1%%time:~2,1%%ss:~1%%time:~8,1%%cc:~1%)
+echo Update finished on %DATE% at %TIME% in %hh:~1%%time:~2,1%%mm:~1%%time:~2,1%%ss:~1%%time:~8,1%%cc:~1% (h:m:s)
