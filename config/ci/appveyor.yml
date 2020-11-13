@@ -28,7 +28,7 @@ after_build:
   # removed most of previous built files
   - rm -Rf _* *.*
   # move generated file to top-level folder
-  - mv -fv docs/_build/html/* . && mv -fv docs/_build/html/.* .
+  - mv -fv docs/_build/html/* . && mv -fv docs/_build/html/.[a-zA-z]* .
   # remove any remainders
   - rm -Rf docs
   # prepare committing built html files
