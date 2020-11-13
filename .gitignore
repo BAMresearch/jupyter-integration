@@ -1,2 +1,3 @@
 config/local.conf
 *.log
+docs/_build

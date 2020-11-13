@@ -10,11 +10,5 @@ Welcome to jupyter-integration's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-    guide.md
+   guide.md
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
