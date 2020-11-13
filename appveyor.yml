@@ -1,0 +1,30 @@
+version: '{build}'
+
+branches:
+  only:
+    - master
+init:
+  - git config --global core.autocrlf input
+clone_depth: 1
+
+image:
+  - Ubuntu2004
+
+#environment:
+#  GH_API:
+#    secure: 4YhqXzROm8WOjGMaeLJZj5fQi/yEV+o3XqgSdnGsYORTeAfCNODt3kmuTaPvAsaM
+
+#install:
+#  - sudo apt-get -y install python3-pip #libx11-dev
+
+build_script:
+  - python
+  - sphinx-build
+
+notifications:
+  - provider: Email
+    to:
+      - ci@ingobressler.net
+    on_build_success: false
+
+# vim: set ts=2 sw=2 sts=2 tw=0 et:
