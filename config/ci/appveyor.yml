@@ -23,11 +23,16 @@ build_script:
 
 after_build:
   - cd .. && pwd
+  # checkout github pages branch, built html files persist
   - git checkout gh-pages
-  - mv -fv docs/_build/html/* .
+  # move generated file to top-level folder
+  - mv -fv docs/_build/html/* . && mv -fv docs/_build/html/.* .
+  # remove any remainders
   - rm -Rf docs
+  # prepare committing built html files
   - git config user.name "$(git log master -1 --format='%an')"
   - git config user.email "$(git log master -1 --format='%ae')"
+  # commit&push html files to github pages branch
   - |
     PUSH_URL=$(git remote -v | tail -n1 | awk '{gsub("https://","",$2);print $2}'); \
     git add -A \
