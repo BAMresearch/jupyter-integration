@@ -14,8 +14,10 @@ environment:
   GH_API:
     secure: 4YhqXzROm8WOjGMaeLJZj5fQi/yEV+o3XqgSdnGsYORTeAfCNODt3kmuTaPvAsaM
 
-install:
+#install:
 #  - sudo apt-get -y install python3-pip #libx11-dev
+
+build: off
 
 build_script:
   - python
