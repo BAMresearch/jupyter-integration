@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Versionierung mit GIT &mdash; jupyter-integration  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to jupyter-integration’s documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> jupyter-integration
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Versionierung mit GIT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#allgemeine-bezeichnungen-glossar">Allgemeine Bezeichnungen, Glossar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verwendung-von-tortoisegit">Verwendung von TortoiseGit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#anleitungen-und-einfuhrungen">Anleitungen und Einführungen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#klonen-erstmaliges-herunterladen-eines-existierenden-projekts"><em>Klonen</em> - Erstmaliges Herunterladen eines existierenden Projekts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#weitere-grundlegende-schritte">Weitere grundlegende Schritte</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#add-dateien-hinzufugen-deren-anderungen-verfolgen"><em>Add</em> - Dateien hinzufügen, deren Änderungen verfolgen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#commit-anderungen-verbuchen"><em>Commit</em> - Änderungen verbuchen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#push-den-server-aktualisieren-erstmalig-zu-neuem-projekt"><em>Push</em> - Den Server aktualisieren (erstmalig zu neuem Projekt)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mit-dem-server-synchronisieren-jedes-weitere-mal">Mit dem Server synchronisieren (jedes weitere Mal)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#jupyterlab-mit-versionierung">JupyterLab mit Versionierung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#voraussetzungen">Voraussetzungen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installieren-von-git">Installieren von GIT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installieren-der-pythonumgebung-anaconda">Installieren der Pythonumgebung <em>Anaconda</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git-unterstutzung-fur-jupyterlab-einrichten">Git-Unterstützung für JupyterLab einrichten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#links-zu-lernmaterial">Links zu Lernmaterial</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jupyter-lab-notebook">Jupyter Lab/Notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#markdown">Markdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">jupyter-integration</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Versionierung mit GIT</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/guide.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="versionierung-mit-git">
+<h1>Versionierung mit GIT<a class="headerlink" href="#versionierung-mit-git" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Eine sehr gute Einführung <a class="reference external" href="https://www.atlassian.com/de/git/tutorials/what-is-version-control">Was ist Versionskontrolle?</a> ist bei Atlassian zu finden, die auch Software und Server für Git anbieten, die aber hier nicht verwendet werden.</p></li>
+<li><p><a class="reference external" href="http://gitbu.ch/pr01.html">Ein komplettes Buch über Git</a> ist sogar frei verfügbar.</p></li>
+</ul>
+<div class="section" id="allgemeine-bezeichnungen-glossar">
+<h2>Allgemeine Bezeichnungen, Glossar<a class="headerlink" href="#allgemeine-bezeichnungen-glossar" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Projekt</strong>:<br />Ein Dateiordner unter GIT-Versionskontrolle, das ein oder mehrere Jupyter-Notebooks, Python-Quellcodedateien sowie die zugehörigen Daten enthalten kann.</p></li>
+<li><p><strong>Klonen</strong>:<br />Das erstmalige Herunterladen eines Projekts vom Repository. Dabei wird auch die gesamte Änderungshistorie kopiert.</p></li>
+<li><p><strong>Commit</strong>:<br />Das Verbuchen vorgemerkter Änderungen inklusive einer kurzen Beschreibung, Zeitstempel und Nutzername werden automatisch hinzugefügt. Nutzername und Emailadresse können zentral oder für jedes Repositorium individuell hinterlegt werden.</p></li>
+</ul>
+</div>
+<div class="section" id="verwendung-von-tortoisegit">
+<h2>Verwendung von TortoiseGit<a class="headerlink" href="#verwendung-von-tortoisegit" title="Permalink to this headline">¶</a></h2>
+<style>
+	img[alt=TortoiseGit_KontextMenu] {
+	  width: 200px; margin: 0 1em 1em 1em;
+	  border: none; background: none;
+	  float: right;
+	}
+</style><p><img alt="TortoiseGit_KontextMenu" src="_images/tgit_context_menu.png" /></p>
+<blockquote>
+<div><p>TortoiseGit ist eine freie grafische Benutzeroberfläche für die Versionsverwaltungs-Software <a class="reference external" href="https://de.wikipedia.org/wiki/Git">Git</a> unter Windows.
+(Siehe auch <a class="reference external" href="https://de.wikipedia.org/wiki/TortoiseGit">Wikipedia</a> hierzu)</p>
+</div></blockquote>
+<p>Da <a class="reference external" href="https://de.wikipedia.org/wiki/Git">Git</a> als Versionsverwaltungsprogramm auf Dateiebene arbeitet, fügt <a class="reference external" href="https://de.wikipedia.org/wiki/TortoiseGit">TortoiseGit</a> zusätzliche Kontextmenüoptionen für Dateien und Verzeichnisse unter Windows hinzu.</p>
+<p>TortoiseGit kann unabhängig von Jupyter(Lab) für jedes Git-Repository unter Windows verwendet werden. Es integriert sich in das Kontextmenü des Explorers und führt Operationen auf Dateiebene durch, ganz ähnlich wie die entsprechenden Kommandozeilenbefehle von Git.</p>
+<div class="section" id="anleitungen-und-einfuhrungen">
+<h3>Anleitungen und Einführungen<a class="headerlink" href="#anleitungen-und-einfuhrungen" title="Permalink to this headline">¶</a></h3>
+<p>Online existieren schon zahlreiche (Video-)Anleitungen und Hilfestellungen, daher wird hier nur darauf verwiesen:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=oixZ1UetK_Y">Videoanleitung über die grundlegende Verwendung von TortoiseGit</a></p></li>
+</ul>
+</div>
+<div class="section" id="klonen-erstmaliges-herunterladen-eines-existierenden-projekts">
+<h3><em>Klonen</em> - Erstmaliges Herunterladen eines existierenden Projekts<a class="headerlink" href="#klonen-erstmaliges-herunterladen-eines-existierenden-projekts" title="Permalink to this headline">¶</a></h3>
+<style>
+	img[alt=GithubCloneMenu] {
+	  width: 400px; margin: 0 1em 1em 1em;
+	  border: none; background: none;
+	  float: right; }
+	img[alt=WinContextClone] {
+	  width: 200px; margin: 0 1em 1em 1em;
+	  border: none; background: none;
+	  float: right; }
+	img[alt=TGitDialogClone] {
+	  width: 400px; margin: 1em 1em 1em 1em;
+	  border: none; background: none;
+	   }
+	img[alt=TGitSuccessClone] {
+	  width: 350px; margin: 0 1em 1em 1em;
+	  border: none; background: none;
+	  float: right; }
+	ol li p { padding-bottom: 1em; }
+	.section { clear: both; }
+</style><p><img alt="GithubCloneMenu" src="_images/github_clone_menu.png" /></p>
+<ol class="simple">
+<li><p>Die Webseite mit dem Git-Repository besuchen, z.B. <a class="reference external" href="https://github.com/BAMresearch/jupyter-integration">ein Projekt auf github.com</a>. Dort auf den Knopf <strong>Code</strong> klicken wodurch sich das Menü öffnet mit der Adresse, die zum sog. <em>Klonen</em> des Projekts genutzt werden kann (siehe Screenshot). Durch Anklicken des Symbols <img alt="Zwischenablage" src="_images/clipboard.png" /> neben der Adresse, wird diese in die Zwischenablage kopiert.</p></li>
+<li><p><img alt="WinContextClone" src="_images/context_menu_clone.png" /> Mit dem Windows-Explorer in den Zeilordner navigieren und darin mit der rechten Maustaste das Kontextmenü öffnen und dort die Option <strong>Git Clone…</strong> auswählen.</p></li>
+<li><p>Im Feld <strong>URL</strong> die HTTPS-Adresse des Projekts eintragen. Sie müsste schon eingetragen sein, wenn die Adresse zuvor schon in die Zwischenablage kopiert wurde (vorheriger Punkt 2). <img alt="TGitDialogClone" src="_images/tgit_clone_dialog.png" /></p></li>
+<li><p><img alt="TGitSuccessClone" src="_images/tgit_success_clone.png" /> Nach dem Bestätigen des Dialogs mit <strong>OK</strong>, wird das Projekt heruntergeladen und am Ende erscheint ein Textfenster mit Statusinfos und der Meldung <strong>Success</strong> in blauer Schrift. Mit der Schaltfläche <strong>Close</strong> kann das Fenster nun geschlossen werden.</p></li>
+</ol>
+</div>
+<div class="section" id="weitere-grundlegende-schritte">
+<h3>Weitere grundlegende Schritte<a class="headerlink" href="#weitere-grundlegende-schritte" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="add-dateien-hinzufugen-deren-anderungen-verfolgen">
+<h4><em>Add</em> - Dateien hinzufügen, deren Änderungen verfolgen<a class="headerlink" href="#add-dateien-hinzufugen-deren-anderungen-verfolgen" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p><strong>Rechts-Klick auf die Datei</strong> -&gt; <strong>TortoiseGit</strong> -&gt; <strong>Add…</strong> auswählen. Darauf folgend erscheint ein Fenster mit einer kurzen Übersicht der ausgewählten Dateien, die mit <strong>OK</strong> bestätigt wird. Abschließend erscheint ein kleines Fenster, welches das erfolgreiche Hinzufügen bestätigt.</p></li>
+<li><p>Die Datei ist nun mit einem blauen Plus-Symbol markiert, d.h. sie ist für den nächsten <strong>Commit</strong> vorgemerkt aber noch nicht auf den Server geladen (im sog. <strong>Staging</strong>-Bereich).</p></li>
+</ol>
+</div>
+<div class="section" id="commit-anderungen-verbuchen">
+<h4><em>Commit</em> - Änderungen verbuchen<a class="headerlink" href="#commit-anderungen-verbuchen" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>Am versionierten Ordner das Kontextmenü aufrufen (Rechts-Klick) und <strong>Git Commit -&gt; “master”…</strong> auswählen.</p></li>
+<li><p>Beim ersten Aufruf erscheint ein Fehler, da der Benutzername und die Email-Adresse noch nicht gesetzt sind, beides aber für jeden Commit erforderlich ist. Hier bestätigen und den eigenen Namen sowie die Emailadresse eintragen und abspeichern.</p></li>
+<li><p>Im folgenden Schritt erscheint ein Fenster mit einer Zusammenfassung der zu verbuchenden Änderungen im unteren Bereich und einem Textfeld für die Beschreibung dieser Änderungen im oberen Bereich. Hier bitte eine möglichst kurze und aussagekräftige Beschreibung der durchgeführten Änderungen eintragen.</p></li>
+<li><p>Die Datei ist nun mit einem grünen Häkchen markiert, d.h. sie ist verbucht in der Historie, aber noch nicht auf den Server geladen, bzw. synchronisiert.</p></li>
+</ol>
+</div>
+<div class="section" id="push-den-server-aktualisieren-erstmalig-zu-neuem-projekt">
+<h4><em>Push</em> - Den Server aktualisieren (erstmalig zu neuem Projekt)<a class="headerlink" href="#push-den-server-aktualisieren-erstmalig-zu-neuem-projekt" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>Im Kontextmenü des Ordners auswählen: <strong>TortoiseGit</strong>-&gt;<strong>Push…</strong></p></li>
+<li><p>Im folgenden Dialog die Voreinstellungen belassen und ein Haken setzten bei <strong>Set upstream/track remote branch</strong>, um den aktuellen Zweig <strong>master</strong> als Standard zu setzen für alle weiteren Aktionen.</p></li>
+<li><p>Mit <strong>OK</strong> bestätigen</p></li>
+</ol>
+</div>
+<div class="section" id="mit-dem-server-synchronisieren-jedes-weitere-mal">
+<h4>Mit dem Server synchronisieren (jedes weitere Mal)<a class="headerlink" href="#mit-dem-server-synchronisieren-jedes-weitere-mal" title="Permalink to this headline">¶</a></h4>
+<ol class="simple">
+<li><p>Im Kontextmenü des Ordners <strong>Git Sync…</strong> auswählen</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="jupyterlab-mit-versionierung">
+<h1>JupyterLab mit Versionierung<a class="headerlink" href="#jupyterlab-mit-versionierung" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="voraussetzungen">
+<h2>Voraussetzungen<a class="headerlink" href="#voraussetzungen" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Git und TortoiseGit (GUI)</p></li>
+<li><p>Anaconda als Pythonumgebung</p></li>
+</ul>
+</div>
+<div class="section" id="installieren-von-git">
+<h2>Installieren von GIT<a class="headerlink" href="#installieren-von-git" title="Permalink to this headline">¶</a></h2>
+<style>
+	img[alt=IconGitTGit] {
+	  width: 100px; margin: 0 1em 1em 1em;
+	  border: none; background: none;
+	  float: right; }
+</style><ol class="simple">
+<li><p><img alt="IconGitTGit" src="_images/icon_git+tgit.png" /> <strong>Option</strong><br />Es wird über ein unternehmensinternes <em>Softwareportal</em> bereitgestellt und kann darüber installiert werden.</p></li>
+<li><p><strong>Option</strong><br />Manuelles Herunterladen und Installieren von der <a class="reference external" href="https://git-scm.com/download/win">Projektwebseite</a>.</p>
+<ul class="simple">
+<li><p>Zusätzlich kann die graphische Bedienoberfläche <a class="reference external" href="https://tortoisegit.org/download/">TortoiseGit</a> installiert werden. Sie benötigt allerdings Administratorrechte zur Installation.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="installieren-der-pythonumgebung-anaconda">
+<h2>Installieren der Pythonumgebung <em>Anaconda</em><a class="headerlink" href="#installieren-der-pythonumgebung-anaconda" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Download des Anaconda-Pakets für Windows, 64 bit, von der <a class="reference external" href="https://www.anaconda.com/products/individual#Downloads">Anaconda-Webseite</a></p>
+<ul class="simple">
+<li><p>Falls der Virenscanner im Folgenden einige Installationsskipte (*.bat-Dateien) blockt, eine ältere Version von Anaconda installieren, z.B. von <a class="reference external" href="https://repo.anaconda.com/archive/Anaconda2-2019.10-Windows-x86_64.exe">Okt. 2019</a>, und anschließend aktualisieren, zum Beipiel über den <em>Anaconda-Navigator</em>.</p></li>
+</ul>
+</li>
+<li><p>Start des Setups durch Ausführen der Datei.</p></li>
+<li><p>Zustimmen der Lizenzvereinbarung mit <strong>I Agree</strong>.</p></li>
+<li><p>Installation nur für den aktuellen Benutzer <strong>Just Me</strong>.</p></li>
+<li><p>Den vorgegebenen Ziel-Ordner für die Installation beibehalten und bestätigen <strong>Next &gt;</strong></p></li>
+<li><p>Weitere Optionen auf den Vorgabewerten belassen und die Installation abschließen.</p></li>
+</ol>
+</div>
+<div class="section" id="git-unterstutzung-fur-jupyterlab-einrichten">
+<h2>Git-Unterstützung für JupyterLab einrichten<a class="headerlink" href="#git-unterstutzung-fur-jupyterlab-einrichten" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Repository mit <a class="reference external" href="https://github.com/BAMresearch/jupyter-integration">Helferskripten von GitHub</a> herunterladen, <a class="reference external" href="#klonen-erstmaliges-herunterladen-eines-existierenden-projekts">zum Beispiel mit <em>TortoiseGit</em></a></p></li>
+<li><p>Die Datei <strong>Anaconda Update Script.bat</strong> doppelt anklicken und ausführen lassen. Sie erledigt mehrere Dinge und benötigt dafür keine Admin-Rechte:</p>
+<ul class="simple">
+<li><p>Aktualisiert die Anaconda-Python-Distribution und erstellt eine Protokolldatei des Prozesses neben dem Speicherort der Skripte (<em>Rechnername.log</em>).</p></li>
+<li><p>Registriert die Jupyter-Notebook-Dateierweiterung .ipynb, so dass ein Doppelklick auf solche Dateien JupyterLab startet und das Notebook öffnet.</p></li>
+<li><p>Installiert Erweiterungen für interaktive Widgets (<em>ipywidgets</em>) in JupyterLab und installiert nodeJS, das dafür erforderlich ist.</p></li>
+<li><p>Last but not least, installiert es die Erweiterung <em>jupyterlab_git</em>, die eine integrierte Benutzeroberfläche für Git dem JupyterLab hinzufügt.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="links-zu-lernmaterial">
+<h2>Links zu Lernmaterial<a class="headerlink" href="#links-zu-lernmaterial" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="jupyter-lab-notebook">
+<h3>Jupyter Lab/Notebook<a class="headerlink" href="#jupyter-lab-notebook" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=vUe2yGJF6Jw">Leicht verdauliche Videos zum Einstieg ins JupyterLab</a></p></li>
+<li><p>weitere Videos gibt es <a class="reference external" href="https://www.youtube.com/channel/UCL0O_guGSJ_fq0By7S9m2tQ">im Channel der Autorin</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=H9SDjNx-sV0">Alternatives Einführungsvideo</a></p></li>
+</ul>
+</div>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pythonbuch.com/einleitung.html">Ein deutsches Skript fürs Programmieren mit Python</a></p></li>
+<li><p><a class="reference external" href="https://py-tutorial-de.readthedocs.io/de/python-3.3/">Das (hier übersetzte) offizielle Python-Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://jupyter.org/try">Eine Online-Plattform zum Testen</a><br />(Falls Anaconda nicht installiert ist oder nicht funktioniert)</p></li>
+</ul>
+</div>
+<div class="section" id="markdown">
+<h3>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://cmsstash.de/website-praxis/markdown-fur-webseiten">Die Markdown Syntax übersichtlich dargestellt</a></p></li>
+<li><p>en: https://commonmark.org/help/tutorial/index.html</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to jupyter-integration’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Ingo Breßler
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
