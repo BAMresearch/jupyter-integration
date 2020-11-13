@@ -26,6 +26,8 @@ after_build:
   - git checkout gh-pages
   - mv -fv docs/_build/html/* .
   - rm -Rf docs
+  - git config user.name "$(git log master -1 --format='%an')"
+  - git config user.email "$(git log master -1 --format='%ae')"
   - |
     PUSH_URL=$(git remote -v | tail -n1 | awk '{gsub("https://","",$2);print $2}'); \
     git add -A \
