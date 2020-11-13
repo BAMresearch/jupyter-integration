@@ -9,9 +9,9 @@ init:
 image:
   - Ubuntu2004
 
-#environment:
-#  GH_API:
-#    secure: 4YhqXzROm8WOjGMaeLJZj5fQi/yEV+o3XqgSdnGsYORTeAfCNODt3kmuTaPvAsaM
+environment:
+  GH_TOKEN:
+    secure: REnDH58USTAew9/H3E6HJwTpDGA0gQye45i/iKXr4Oy1tToIlconUw2GEpxt/87d
 
 install:
   - sudo apt-get update
@@ -27,9 +27,10 @@ after_build:
   - mv -fv docs/_build/html/* .
   - rm -Rf docs
   - |
+    PUSH_URL=$(git remote -v | tail -n1 | awk '{gsub("https://","",$2);print $2}'); \
     git add -A \
-    && git ci -m "Generated gh-pages for commit $(git log master -1 --pretty=oneline --abbrev-commit)" \
-    && git push origin gh-pages
+    && git commit -m "Generated gh-pages for commit $(git log master -1 --pretty=oneline --abbrev-commit)" \
+    && git push https://ibressler:${GH_TOKEN}@${PUSH_URL} origin gh-pages
 
 notifications:
   - provider: Email
