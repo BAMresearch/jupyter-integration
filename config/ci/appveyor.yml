@@ -22,9 +22,8 @@ build_script:
   - cd docs && make html
 
 after_build:
-  - pwd
+  - cd .. && pwd
   - git checkout gh-pages
-  - ls -l
   - mv -fv docs/_build/html/* .
   - rm -Rf docs
   - |
