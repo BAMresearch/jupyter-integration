@@ -1,8 +1,8 @@
 version: '{build}'
 
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 init:
   - git config --global core.autocrlf input
 clone_depth: 1
