@@ -1,0 +1,304 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>JupyterLab with Version Control &mdash; jupyter-integration  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Versioning with GIT" href="en_version_control_with_git.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> jupyter-integration
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">deutsch:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="de_versionierung_mit_git.html">Versionierung mit GIT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="de_jupyterlab_mit_versionierung.html">JupyterLab mit Versionierung</a></li>
+</ul>
+<p class="caption"><span class="caption-text">english:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="en_version_control_with_git.html">Versioning with GIT</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">JupyterLab with Version Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-git">Installing GIT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-the-python-environment-anaconda">Installing the Python environment <em>Anaconda</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-git-support-for-jupyterlab">Setting up Git support for JupyterLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#links-to-learning-material">Links to learning material</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jupyter-lab-notebook">Jupyter Lab/Notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#markdown">Markdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">jupyter-integration</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>JupyterLab with Version Control</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/en_jupyterlab_with_version_control.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="jupyterlab-with-version-control">
+<h1>JupyterLab with Version Control<a class="headerlink" href="#jupyterlab-with-version-control" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Git and TortoiseGit (GUI)</p></li>
+<li><p>Anaconda providing the Python environment</p></li>
+</ul>
+</div>
+<div class="section" id="installing-git">
+<h2>Installing GIT<a class="headerlink" href="#installing-git" title="Permalink to this headline">¶</a></h2>
+<style>
+	img[alt=IconGitTGit] {
+	  width: 100px; margin: 0 1em 1em 1em;
+	  border: none; background: none;
+	  float: right; }
+</style><ol class="simple">
+<li><p><img alt="IconGitTGit" src="_images/icon_git+tgit.png" /> <strong>Option</strong><br />A corporate internal <em>software portal</em> provides Git and TortoiseGit or a combined package of the two.</p></li>
+<li><p><strong>Option</strong><br />Download and install Git from the <a class="reference external" href="https://git-scm.com/download/win">project website</a> manually.</p>
+<ul class="simple">
+<li><p>Additionally, the graphical user interface <a class="reference external" href="https://tortoisegit.org/download/">TortoiseGit</a> can be installed. However, this requires administrator privileges.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="installing-the-python-environment-anaconda">
+<h2>Installing the Python environment <em>Anaconda</em><a class="headerlink" href="#installing-the-python-environment-anaconda" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Download the Anaconda-Package for Windows, 64 bit, from the <a class="reference external" href="https://www.anaconda.com/products/individual#Downloads">Anaconda website</a></p>
+<ul class="simple">
+<li><p>If the virus scanner blocks some installation scripts (*.bat files) in the following, install an older version of Anaconda, e.g. from <a class="reference external" href="https://repo.anaconda.com/archive/Anaconda2-2019.10-Windows-x86_64.exe">Oct. 2019</a>, and then update, for example via the <em>Anaconda Navigator</em>.</p></li>
+</ul>
+</li>
+<li><p>Start the setup by double-clicking the file.</p></li>
+<li><p>Confirm the license agreement with mit <strong>I Agree</strong>.</p></li>
+<li><p>Install for the current user only be selecting <strong>Just Me</strong>.</p></li>
+<li><p>Keep the default destination folder for the installation and confirm with <strong>Next &gt;</strong></p></li>
+<li><p>Leave other options at their default values and complete the installation.</p></li>
+</ol>
+</div>
+<div class="section" id="setting-up-git-support-for-jupyterlab">
+<h2>Setting up Git support for JupyterLab<a class="headerlink" href="#setting-up-git-support-for-jupyterlab" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>Download a <a class="reference external" href="https://github.com/BAMresearch/jupyter-integration">repository of helper scripts from GitHub</a>, <a class="reference external" href="#clone-first-download-of-an-existing-project">for example with <em>TortoiseGit</em></a></p></li>
+<li><p>Double click on the file <strong>Anaconda Update Script.bat</strong> and let it run. It does several things and does not require admin rights:</p>
+<ul class="simple">
+<li><p>It updates the Anaconda Python distribution and creates a log file of the process next to the location of the scripts (<em>ComputerName.log</em>).</p></li>
+<li><p>It registers the Jupyter-Notebook file extension .ipynb, so that a double click on such files starts JupyterLab and opens the notebook.</p></li>
+<li><p>It installs extensions for interactive widgets (<em>ipywidgets</em>) in JupyterLab and installs nodeJS, which is required for this.</p></li>
+<li><p>Last but not least, it installs the extension <em>jupyterlab_git</em>, which adds an integrated user interface for Git to JupyterLab.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="links-to-learning-material">
+<h2>Links to learning material<a class="headerlink" href="#links-to-learning-material" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="jupyter-lab-notebook">
+<h3>Jupyter Lab/Notebook<a class="headerlink" href="#jupyter-lab-notebook" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=7wfPqAyYADY">Easily digestible videos for getting started in the JupyterLab</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/results?search_query=jupyterlab">And there are more!</a></p></li>
+</ul>
+</div>
+<div class="section" id="python">
+<h3>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pythonbooks.org/free-books/">There are several free(!) books introducing the Python programming language</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/tutorial/index.html">The official Python Tutorial</a></p></li>
+<li><p><a class="reference external" href="https://jupyter.org/try">A online platform for trying it out</a><br />(Just in case Anaconda is not installed or does not work.)</p></li>
+</ul>
+</div>
+<div class="section" id="markdown">
+<h3>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://commonmark.org/help/tutorial/index.html">The Markdown Syntax explained concisely</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="en_version_control_with_git.html" class="btn btn-neutral float-left" title="Versioning with GIT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Ingo Breßler
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

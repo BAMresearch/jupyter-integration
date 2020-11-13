@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Versioning with GIT &mdash; jupyter-integration  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="JupyterLab with Version Control" href="en_jupyterlab_with_version_control.html" />
+    <link rel="prev" title="JupyterLab mit Versionierung" href="de_jupyterlab_mit_versionierung.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> jupyter-integration
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">deutsch:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="de_versionierung_mit_git.html">Versionierung mit GIT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="de_jupyterlab_mit_versionierung.html">JupyterLab mit Versionierung</a></li>
+</ul>
+<p class="caption"><span class="caption-text">english:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Versioning with GIT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#general-terms-glossary">General Terms, Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-tortoisegit">Using TortoiseGit</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#instructions-and-introductions">Instructions and Introductions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clone-first-download-of-an-existing-project"><em>Clone</em> - First download of an existing project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-add-files-track-their-changes"><em>Add</em> - add files, track their changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#commit-post-changes"><em>Commit</em> - Post changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#push-update-the-server-first-time-to-new-project"><em>Push</em> - Update the server (first time to new project)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#synchronize-with-the-server-every-other-time">Synchronize with the server (every other time)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="en_jupyterlab_with_version_control.html">JupyterLab with Version Control</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">jupyter-integration</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Versioning with GIT</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/en_version_control_with_git.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="versioning-with-git">
+<h1>Versioning with GIT<a class="headerlink" href="#versioning-with-git" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>A very good introduction <a class="reference external" href="https://www.atlassian.com/git/tutorials/what-is-version-control">What is version control?</a> can be found at Atlassian who offer software and servers for Git as well but their services are not used here.</p></li>
+<li><p><a class="reference external" href="https://git-scm.com/book">A complete book about Git</a> is even available free of charge.</p></li>
+</ul>
+<div class="section" id="general-terms-glossary">
+<h2>General Terms, Glossary<a class="headerlink" href="#general-terms-glossary" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Project</strong>:<br />A folder with GIT version control, containing one or more Jupyter notebooks,
+Python source code files and supplementary files.</p></li>
+<li><p><strong>Clone</strong>:<br />Downloading the project from the remote repository for the first time.
+The full history of changes will be copied as well.</p></li>
+<li><p><strong>Commit</strong>:<br />The posting of marked (<em>staged</em>) changes including a short description, timestamp and username are added automatically. User name and email address can be stored centrally or individually for each repository.</p></li>
+</ul>
+</div>
+<div class="section" id="using-tortoisegit">
+<h2>Using TortoiseGit<a class="headerlink" href="#using-tortoisegit" title="Permalink to this headline">¶</a></h2>
+<style>
+	img[alt=TortoiseGit_KontextMenu] {
+	  width: 200px; margin: 0 1em 1em 1em;
+	  border: none; background: none;
+	  float: right;
+	}
+</style><p><img alt="TortoiseGit_KontextMenu" src="_images/tgit_context_menu.png" /></p>
+<blockquote>
+<div><p>TortoiseGit is a graphical <a class="reference external" href="https://en.wikipedia.org/wiki/Git">Git</a> revision control client for Windows.
+(See also <a class="reference external" href="https://en.wikipedia.org/wiki/TortoiseGit">Wikipedia</a>)</p>
+</div></blockquote>
+<p>Since <a class="reference external" href="https://en.wikipedia.org/wiki/Git">Git</a> is a file-level version control program, <a class="reference external" href="https://en.wikipedia.org/wiki/TortoiseGit">TortoiseGit</a> adds additional context menu options for files and directories under Windows</p>
+<p>TortoiseGit can be used independently of Jupyter(Lab) for any git repository on Windows. It integrates itself into the explorer context menu and performs file-level operations, much like the corresponding Git command line commands.</p>
+<div class="section" id="instructions-and-introductions">
+<h3>Instructions and Introductions<a class="headerlink" href="#instructions-and-introductions" title="Permalink to this headline">¶</a></h3>
+<p>Online already exist numerous (video-)instructions and support, therefore we only refer to them here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=_ZTPLrhLu-I">Video tutorial about the basic use of TortoiseGit</a></p></li>
+</ul>
+</div>
+<div class="section" id="clone-first-download-of-an-existing-project">
+<h3><em>Clone</em> - First download of an existing project<a class="headerlink" href="#clone-first-download-of-an-existing-project" title="Permalink to this headline">¶</a></h3>
+<style>
+	img[alt=GithubCloneMenu] {
+	  width: 400px; margin: 0 1em 1em 1em;
+	  border: none; background: none;
+	  float: right; }
+	img[alt=WinContextClone] {
+	  width: 200px; margin: 0 1em 1em 1em;
+	  border: none; background: none;
+	  float: right; }
+	img[alt=TGitDialogClone] {
+	  width: 400px; margin: 1em 1em 1em 1em;
+	  border: none; background: none;
+	   }
+	img[alt=TGitSuccessClone] {
+	  width: 350px; margin: 0 1em 1em 1em;
+	  border: none; background: none;
+	  float: right; }
+	ol li p { padding-bottom: 1em; }
+	.section { clear: both; }
+</style><p><img alt="GithubCloneMenu" src="_images/github_clone_menu.png" /></p>
+<ol class="simple">
+<li><p>Visit the website with the git repository, e.g. <a class="reference external" href="https://github.com/BAMresearch/jupyter-integration">a project on github.com</a>. There click on the <strong>Code</strong> button which opens the menu with the address that can be used to <em>clone</em> the project (see screenshot). By clicking the <img alt="clipboard" src="_images/clipboard.png" /> icon next to the address, the address is copied to the clipboard.</p></li>
+<li><p><img alt="WinContextClone" src="_images/context_menu_clone.png" /> Use Windows Explorer to navigate to the row folder and right click to open the context menu and select the <em>Git Clone…</em> option.</p></li>
+<li><p>Enter the HTTPS address of the project in the <strong>URL</strong> field. It should already be entered if the address has already been copied to the clipboard (previous point 2). <img alt="TGitDialogClone" src="_images/tgit_clone_dialog.png" /></p></li>
+<li><p><img alt="TGitSuccessClone" src="_images/tgit_success_clone.png" /> After confirming the dialog with <strong>OK</strong>, the project is downloaded and at the end a text window with status information and the message <strong>Success</strong> in blue font appears. The window can now be closed with the <strong>Close</strong> button.</p></li>
+</ol>
+</div>
+<div class="section" id="add-add-files-track-their-changes">
+<h3><em>Add</em> - add files, track their changes<a class="headerlink" href="#add-add-files-track-their-changes" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p><strong>Right click on the file</strong> -&gt; <strong>TortoiseGit</strong> -&gt; select <strong>Add…</strong>. After that a window with a short overview of the selected files appears, which should be confirmed with <strong>OK</strong>. Finally a small window appears which confirms the successful adding.</p></li>
+<li><p>The file is now marked with a blue plus symbol, i.e. it is marked for the next <strong>Commit</strong> but not yet uploaded to the server (in the so-called <strong>Staging</strong> area).</p></li>
+<li><p><strong>Rechts-Klick auf die Datei</strong> -&gt; <strong>TortoiseGit</strong> -&gt; <strong>Add…</strong> auswählen. Darauf folgend erscheint ein Fenster mit einer kurzen Übersicht der ausgewählten Dateien, die mit <strong>OK</strong> bestätigt wird. Abschließend erscheint ein kleines Fenster, welches das erfolgreiche Hinzufügen bestätigt.</p></li>
+<li><p>Die Datei ist nun mit einem blauen Plus-Symbol markiert, d.h. sie ist für den nächsten <strong>Commit</strong> vorgemerkt aber noch nicht auf den Server geladen (im sog. <strong>Staging</strong>-Bereich).</p></li>
+</ol>
+</div>
+<div class="section" id="commit-post-changes">
+<h3><em>Commit</em> - Post changes<a class="headerlink" href="#commit-post-changes" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Open the context menu of the versioned folder (right-click) and select <strong>Git Commit -&gt; “master”…</strong>.</p></li>
+<li><p>The first time you run it, an error occurs because the username and email address are not yet set, but both are required for each commit. Confirm here and enter and save your own name and email address.</p></li>
+<li><p>In the following step, a window appears with a summary of the changes to be posted in the lower area and a text field for the description of these changes in the upper area. Please enter a short and meaningful description of the changes you made.</p></li>
+<li><p>The file is now marked with a green checkmark, i.e. it is booked in the history, but still not uploaded to the server or synchronized.</p></li>
+</ol>
+</div>
+<div class="section" id="push-update-the-server-first-time-to-new-project">
+<h3><em>Push</em> - Update the server (first time to new project)<a class="headerlink" href="#push-update-the-server-first-time-to-new-project" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Select in the context menu of the folder: <strong>TortoiseGit</strong>-&gt;<strong>Push…</strong></p></li>
+<li><p>Leave the default settings in the following dialog and check <strong>Set upstream/track remote branch</strong> to set the current <strong>master</strong> branch as default for all further actions.</p></li>
+<li><p>Confirm with <strong>OK</strong>.</p></li>
+</ol>
+</div>
+<div class="section" id="synchronize-with-the-server-every-other-time">
+<h3>Synchronize with the server (every other time)<a class="headerlink" href="#synchronize-with-the-server-every-other-time" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Select <strong>Git Sync…</strong> in the context menu of the folder.</p></li>
+<li><p>First load possible changes from the server using <strong>Pull</strong>.</p></li>
+<li><p>If this was successful, upload your changes to the server using <strong>Push</strong>.</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="en_jupyterlab_with_version_control.html" class="btn btn-neutral float-right" title="JupyterLab with Version Control" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="de_jupyterlab_mit_versionierung.html" class="btn btn-neutral float-left" title="JupyterLab mit Versionierung" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Ingo Breßler
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
