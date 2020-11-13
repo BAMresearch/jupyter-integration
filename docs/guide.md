@@ -32,7 +32,7 @@ TortoiseGit kann unabhängig von Jupyter(Lab) für jedes Git-Repository unter Wi
 
 [1]: https://de.wikipedia.org/wiki/Git
 [2]: https://de.wikipedia.org/wiki/TortoiseGit
-[3]: _static/tgit_context_menu.png "TortoiseGit Kontextmenü"
+[3]: img/tgit_context_menu.png "TortoiseGit Kontextmenü"
 
 ### Anleitungen und Einführungen
 
@@ -68,12 +68,12 @@ Online existieren schon zahlreiche (Video-)Anleitungen und Hilfestellungen, dahe
 3. Im Feld **URL** die HTTPS-Adresse des Projekts eintragen. Sie müsste schon eingetragen sein, wenn die Adresse zuvor schon in die Zwischenablage kopiert wurde (vorheriger Punkt 2). ![TGitDialogClone][24] 
 4. ![TGitSuccessClone][25] Nach dem Bestätigen des Dialogs mit **OK**, wird das Projekt heruntergeladen und am Ende erscheint ein Textfenster mit Statusinfos und der Meldung **Success** in blauer Schrift. Mit der Schaltfläche **Close** kann das Fenster nun geschlossen werden.
 
-[20]: _static/github_clone_menu.png "Github Clone Menü"
+[20]: img/github_clone_menu.png "Github Clone Menü"
 [21]: https://github.com/BAMresearch/jupyter-integration
-[22]: _static/clipboard.png "Symbol für Zwischenablage"
-[23]: _static/context_menu_clone.png "Kontextmenü Klonen"
-[24]: _static/tgit_clone_dialog.png "TortoiseGit Menü Klonen"
-[25]: _static/tgit_success_clone.png "TortoiseGit Klonen erfolgreich"
+[22]: img/clipboard.png "Symbol für Zwischenablage"
+[23]: img/context_menu_clone.png "Kontextmenü Klonen"
+[24]: img/tgit_clone_dialog.png "TortoiseGit Menü Klonen"
+[25]: img/tgit_success_clone.png "TortoiseGit Klonen erfolgreich"
 
 ### Weitere grundlegende Schritte
 
@@ -114,7 +114,7 @@ Online existieren schon zahlreiche (Video-)Anleitungen und Hilfestellungen, dahe
 	  float: right; }
 </style>
 
-1. ![IconGitTGit](_static/icon_git+tgit.png) **Option**  
+1. ![IconGitTGit](img/icon_git+tgit.png) **Option**  
   Es wird über ein unternehmensinternes *Softwareportal* bereitgestellt und kann darüber installiert werden. 
 2. **Option**  
   Manuelles Herunterladen und Installieren von der [Projektwebseite](https://git-scm.com/download/win).
