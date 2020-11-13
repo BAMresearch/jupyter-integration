@@ -1,3 +1,4 @@
 config/local.conf
 *.log
 docs/_build
+.DS_Store
