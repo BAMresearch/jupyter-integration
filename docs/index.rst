@@ -10,5 +10,6 @@ Welcome to jupyter-integration's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   guide.md
+   guide.de.md
+   guide.en.md
 
