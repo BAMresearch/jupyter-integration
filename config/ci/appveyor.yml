@@ -38,8 +38,9 @@ after_build:
   - |
     PUSH_URL=$(git remote -v | tail -n1 | awk '{gsub("https://","",$2);print $2}'); \
     git add -A \
-    && git commit -m "Generated gh-pages for commit $(git log master -1 --pretty=oneline --abbrev-commit)" \
-    && git push https://ibressler:${GH_TOKEN}@${PUSH_URL} gh-pages
+    && if git commit -m "Generated gh-pages for commit $(git log master -1 --pretty=oneline --abbrev-commit)"; \
+          then git push https://ibressler:${GH_TOKEN}@${PUSH_URL} gh-pages; \
+       fi;
 
 notifications:
   - provider: Email
