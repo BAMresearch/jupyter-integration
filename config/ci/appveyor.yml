@@ -5,14 +5,13 @@ branches:
     - master
 init:
   - git config --global core.autocrlf input
-clone_depth: 1
 
 image:
   - Ubuntu2004
 
-#environment:
-#  GH_API:
-#    secure: 4YhqXzROm8WOjGMaeLJZj5fQi/yEV+o3XqgSdnGsYORTeAfCNODt3kmuTaPvAsaM
+environment:
+  GH_TOKEN:
+    secure: REnDH58USTAew9/H3E6HJwTpDGA0gQye45i/iKXr4Oy1tToIlconUw2GEpxt/87d
 
 install:
   - sudo apt-get update
@@ -23,13 +22,24 @@ build_script:
   - cd docs && make html
 
 after_build:
+  - cd .. && pwd
+  # checkout github pages branch, built html files persist
   - git checkout gh-pages
-  - mv -fv docs/_build/html/* .
+  # removed most of previous built files
+  - rm -Rf _* *.*
+  # move generated file to top-level folder
+  - mv -fv docs/_build/html/* . && mv -fv docs/_build/html/.[a-zA-z]* .
+  # remove any remainders
   - rm -Rf docs
+  # prepare committing built html files
+  - git config user.name "$(git log master -1 --format='%an')"
+  - git config user.email "$(git log master -1 --format='%ae')"
+  # commit&push html files to github pages branch
   - |
+    PUSH_URL=$(git remote -v | tail -n1 | awk '{gsub("https://","",$2);print $2}'); \
     git add -A \
-    && git ci -m "Generated gh-pages for commit $(git log master -1 --pretty=oneline --abbrev-commit)" \
-    && git push origin gh-pages
+    && git commit -m "Generated gh-pages for commit $(git log master -1 --pretty=oneline --abbrev-commit)" \
+    && git push https://ibressler:${GH_TOKEN}@${PUSH_URL} gh-pages
 
 notifications:
   - provider: Email
