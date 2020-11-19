@@ -47,8 +47,10 @@ after_build:
           then git push https://ibressler:${GH_TOKEN}@${PUSH_URL} gh-pages; \
        fi;
   # cleanup AppVeyor history
-  - git checkout master
-  - python3 config/ci/citools/appveyor_keep_builds.py 10 --verbose
+  - |
+    git checkout master \
+    && git submodule update --init --recursive
+    && python3 config/ci/citools/appveyor_keep_builds.py 10 --verbose
 
 notifications:
   - provider: Email
