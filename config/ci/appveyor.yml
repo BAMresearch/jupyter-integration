@@ -36,9 +36,6 @@ after_build:
   - mv -fv docs/_build/html/* . && mv -fv docs/_build/html/.[a-zA-z]* .
   # remove any remainders
   - rm -Rf docs
-  # for debugging
-  - ls -la
-  - git submodule
   # prepare committing built html files
   - git config user.name "$(git log master -1 --format='%an')"
   - git config user.email "$(git log master -1 --format='%ae')"
