@@ -50,6 +50,7 @@ after_build:
   - |
     git checkout master \
     && git submodule update --init --recursive \
+    && env
     && python3 config/ci/citools/appveyor_keep_builds.py 10 --verbose
 
 notifications:
