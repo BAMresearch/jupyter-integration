@@ -6,7 +6,7 @@ branches:
 init:
   - git config --global core.autocrlf input
 clone_script:
-  - ps: git clone -q --recursive https://github.com/$env:APPVEYOR_REPO_NAME.git $env:APPVEYOR_BUILD_FOLDER
+  - ps: git clone -q --recursive --branch=$env:APPVEYOR_REPO_BRANCH https://github.com/$env:APPVEYOR_REPO_NAME.git $env:APPVEYOR_BUILD_FOLDER
   - ps: cd $env:APPVEYOR_BUILD_FOLDER
   - ps: git checkout -qf $env:APPVEYOR_REPO_COMMIT
   - ps: git submodule update --init --recursive
@@ -31,11 +31,14 @@ after_build:
   # checkout github pages branch, built html files persist
   - git checkout gh-pages
   # removed most of previous built files
-  - rm -Rf _* *.*
+  - rm -Rf _* *.* config
   # move generated file to top-level folder
   - mv -fv docs/_build/html/* . && mv -fv docs/_build/html/.[a-zA-z]* .
   # remove any remainders
   - rm -Rf docs
+  # for debugging
+  - ls -la
+  - git submodule
   # prepare committing built html files
   - git config user.name "$(git log master -1 --format='%an')"
   - git config user.email "$(git log master -1 --format='%ae')"
@@ -47,6 +50,7 @@ after_build:
           then git push https://ibressler:${GH_TOKEN}@${PUSH_URL} gh-pages; \
        fi;
   # cleanup AppVeyor history
+  - git checkout master
   - python3 config/ci/citools/appveyor_keep_builds.py 10 --verbose
 
 notifications:
