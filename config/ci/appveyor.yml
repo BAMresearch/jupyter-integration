@@ -17,6 +17,8 @@ image:
 environment:
   GH_TOKEN:
     secure: REnDH58USTAew9/H3E6HJwTpDGA0gQye45i/iKXr4Oy1tToIlconUw2GEpxt/87d
+  APPVEYOR_TOKEN:
+    secure: MdXaKncFmtCvxrhqmDYYMhNaa1PZWlUU8YtOsWGrznY=
 
 install:
   - sudo apt-get update
