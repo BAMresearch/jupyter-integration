@@ -21,7 +21,7 @@ environment:
 install:
   - sudo apt-get update
   - sudo apt-get -y install python3-pip
-  - sudo pip3 install sphinx sphinx-rtd-theme recommonmark dateutil
+  - sudo pip3 install sphinx sphinx-rtd-theme recommonmark python-dateutil
 
 build_script:
   - cd docs && make html
