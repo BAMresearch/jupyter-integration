@@ -5,6 +5,11 @@ branches:
     - master
 init:
   - git config --global core.autocrlf input
+clone_script:
+  - ps: git clone -q --depth=1 --recursive --branch=$env:APPVEYOR_REPO_BRANCH https://github.com/$env:APPVEYOR_REPO    _NAME.git $env:APPVEYOR_BUILD_FOLDER
+  - ps: cd $env:APPVEYOR_BUILD_FOLDER
+  - ps: git checkout -qf $env:APPVEYOR_REPO_COMMIT
+  - ps: git submodule update --init --recursive
 
 image:
   - Ubuntu2004
@@ -41,6 +46,8 @@ after_build:
     && if git commit -m "Generated gh-pages for commit $(git log master -1 --pretty=oneline --abbrev-commit)"; \
           then git push https://ibressler:${GH_TOKEN}@${PUSH_URL} gh-pages; \
        fi;
+  # cleanup AppVeyor history
+  - python3 config/ci/citools/appveyor_keep_builds.py 10 --verbose
 
 notifications:
   - provider: Email

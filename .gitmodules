@@ -1,0 +1,3 @@
+[submodule "config/ci/citools"]
+	path = config/ci/citools
+	url = https://github.com/ibressler/citools.git
