@@ -6,7 +6,7 @@ branches:
 init:
   - git config --global core.autocrlf input
 clone_script:
-  - ps: git clone -q --depth=1 --recursive https://github.com/$env:APPVEYOR_REPO_NAME.git $env:APPVEYOR_BUILD_FOLDER
+  - ps: git clone -q --recursive https://github.com/$env:APPVEYOR_REPO_NAME.git $env:APPVEYOR_BUILD_FOLDER
   - ps: cd $env:APPVEYOR_BUILD_FOLDER
   - ps: git checkout -qf $env:APPVEYOR_REPO_COMMIT
   - ps: git submodule update --init --recursive
