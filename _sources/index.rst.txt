@@ -6,6 +6,16 @@
 Welcome to jupyter-integration's documentation!
 ===============================================
 
+TL;DR: Videos!
+------------------
+.. image:: img/install_jlab+git.png
+   :width: 48%
+   :target: https://youtu.be/Loj4d-dr644
+
+.. image:: img/use_jlab+git.png
+   :width: 48%
+   :target: https://youtu.be/fmgN3syhxiw
+
 .. toctree::
    :maxdepth: 3
    :caption: deutsch:
