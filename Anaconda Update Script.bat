@@ -166,7 +166,9 @@ rem Installing packages from conda-forge channel and make sure they are updated
 call %condapath% install -y -c conda-forge lmfit jupyterlab-git ipympl
 call %condapath% update -y -c conda-forge lmfit jupyterlab-git ipympl
 
-rem Jupyter lab extensions
+rem activate Anaconda environment, otherwise building jupyter lab extensions fails
+call %condapath% activate
+rem install/update Jupyter lab extensions
 call %juplabext% install -y @jupyter-widgets/jupyterlab-manager
 call %juplabext% install -y jupyter-matplotlib
 rem Git extension (does not work properly with submodules)
