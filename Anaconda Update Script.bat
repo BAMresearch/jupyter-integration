@@ -157,26 +157,6 @@ rem    goto :end
 rem ) else ( del %testfn% )
 rem Connected to the Internet now
 
-@echo on
-echo Updating Anaconda ...
-call %condaActivate%
-setlocal EnableDelayedExpansion
-:: get latest available version of anaconda metapackage
-for /F "tokens=2,3" %%I in ('%condapath% search anaconda') do (
-    set latest_anaconda=%%I
-    set latest_anaconda_build=%%J
-)
-echo Latest Anaconda: '!latest_anaconda!', build '!latest_anaconda_build!'
-:: get current installed version of anaconda metapackage
-for /F "tokens=2,3" %%I in ('%condapath% list anaconda$') do (
-    set current_anaconda=%%I
-    set current_anaconda_build=%%J
-)
-echo Current Anaconda: '!current_anaconda!', build '!current_anaconda_build!'
-:: install the latest Anaconda package if the is a new one
-if not !latest_anaconda!==!current_anaconda! (
-    call %condapath% install -y anaconda=!latest_anaconda!
-)
 setlocal DisableDelayedExpansion
 
 echo Installing/Updating additional packages ...
