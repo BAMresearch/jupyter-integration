@@ -160,11 +160,11 @@ rem Connected to the Internet now
 setlocal DisableDelayedExpansion
 
 echo Installing/Updating additional packages ...
-call %condapath% install -y h5py gitpython ipywidgets
+call %condapath% install -y h5py gitpython ipywidgets nodejs=16 pandoc
 rem regular anaconda packages get updated by previous update --all
 rem Installing packages from conda-forge channel and make sure they are updated
-call %condapath% install -y -c conda-forge nodejs nbstripout lmfit jupyterlab-git ipympl
-call %condapath% update -y -c conda-forge nodejs nbstripout lmfit jupyterlab-git ipympl
+call %condapath% install -y -c conda-forge lmfit jupyterlab-git ipympl
+call %condapath% update -y -c conda-forge lmfit jupyterlab-git ipympl
 
 rem Jupyter lab extensions
 call %juplabext% install -y @jupyter-widgets/jupyterlab-manager
